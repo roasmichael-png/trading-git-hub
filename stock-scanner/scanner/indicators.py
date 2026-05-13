@@ -40,6 +40,8 @@ def check_signals(df: pd.DataFrame) -> bool:
     hist_prev2 = prev2["macd"] - prev2["macd_signal"]
     improving = hist_last > hist_prev > hist_prev2
     convergence_rate = (hist_last - hist_prev2) / abs(hist_prev2) if hist_prev2 != 0 else 0
-    macd_converging = improving and convergence_rate >= 0.15
+    # gap must be closing fast AND be small relative to price (filters bad data / far-from-cross)
+    gap_pct_of_price = abs(hist_last) / last["close"]
+    macd_converging = improving and convergence_rate >= 0.15 and gap_pct_of_price < 0.05
 
     return srsi_oversold and srsi_bullish and macd_below_zero and macd_below_signal and macd_converging
