@@ -20,6 +20,7 @@ def fetch_daily_bars(symbols: list[str], days: int = 300) -> dict[str, pd.DataFr
                 start_str,
                 end_str,
                 adjustment="raw",
+                feed="iex",
             ).df
             if raw.empty or len(raw) < 30:
                 continue

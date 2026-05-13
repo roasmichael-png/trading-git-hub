@@ -16,6 +16,7 @@ try:
         start.strftime("%Y-%m-%d"),
         end.strftime("%Y-%m-%d"),
         adjustment="raw",
+        feed="iex",
     )
     df = bars.df
     print(f"Got {len(df)} rows")
