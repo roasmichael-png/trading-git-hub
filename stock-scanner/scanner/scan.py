@@ -56,7 +56,7 @@ ELITE_STOCKS = [
     # Elite Long-Term
     "NVDA", "MSFT", "AMZN", "META", "GOOGL", "AVGO", "TSM", "PLTR", "TSLA", "AMD",
     # Aggressive Blast Off
-    "RKLB", "IONQ", "SOUN", "TEM", "SMR", "AI", "SERV", "ASTS",
+    "RKLB", "IONQ", "SOUN", "TEM", "SMR", "AI", "SERV", "ASTS", "NTR",
     # Sector winners
     "COIN", "MSTR", "MARA", "RIOT",   # crypto infrastructure
     "LMT", "RTX", "NOC", "GD",        # defense
