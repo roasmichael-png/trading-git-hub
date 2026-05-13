@@ -4,6 +4,8 @@ from scanner.client import get_client
 from scanner.data import fetch_daily_bars, fetch_crypto_bars
 from scanner.indicators2 import add_indicators, check_signals_loose
 from scanner.scan import _all_stocks, TOP_ETFS, CRYPTOS
+from scanner.telegram import send_telegram
+import config
 import time
 
 
@@ -65,3 +67,14 @@ if __name__ == "__main__":
                 f"{h['srsi_k']:>6.1f} {h['srsi_d']:>6.1f} "
                 f"{h['macd']:>8.2f} {h['macd_signal']:>8.2f}"
             )
+
+    if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
+        today = date.today().strftime("%b %d")
+        if not hits:
+            msg = f"Scanner 2 (Loose Reversal) - {today}\n\nNo setups found."
+        else:
+            lines = [f"Scanner 2 (Loose Reversal) - {today}", f"{len(hits)} setup(s)\n"]
+            for h in hits:
+                lines.append(f"{h['symbol']} ${h['close']:.2f} | K={h['srsi_k']} D={h['srsi_d']} | MACD={h['macd']:.2f}")
+            msg = "\n".join(lines)
+        send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)

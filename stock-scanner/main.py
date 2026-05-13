@@ -47,4 +47,3 @@ if __name__ == "__main__":
 
     if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, build_message(hits))
-        print("Telegram sent.")

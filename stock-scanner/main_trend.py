@@ -131,4 +131,3 @@ if __name__ == "__main__":
                 lines.append(f"{h['symbol']} ${h['close']:.2f} | RSI={h['rsi']} RVOL={h['rvol']}x")
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
-        print("Telegram sent.")
