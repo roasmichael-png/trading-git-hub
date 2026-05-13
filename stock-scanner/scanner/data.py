@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from alpaca_trade_api.rest import TimeFrame, TimeFrameUnit
 from scanner.client import get_client
 
-TIMEFRAME = TimeFrame(4, TimeFrameUnit.Hour)  # switch to TimeFrame.Day for daily
-LOOKBACK_DAYS = 500  # needs more days for 4h bars to build 200-period indicators
+TIMEFRAME = TimeFrame.Day
+LOOKBACK_DAYS = 300
 
 
 def _date_range(days: int):
