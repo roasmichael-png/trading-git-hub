@@ -32,12 +32,14 @@ def check_signals(df: pd.DataFrame) -> bool:
     srsi_oversold = last["srsi_k"] < 20
     srsi_bullish = last["srsi_k"] > last["srsi_d"]
 
-    # MACD: below zero AND below signal but histogram shrinking for 2+ bars (converging)
+    # MACD: below zero AND below signal, histogram shrinking fast (>15% over 2 bars)
     macd_below_zero = last["macd"] < 0
     macd_below_signal = last["macd"] < last["macd_signal"]
     hist_last  = last["macd"] - last["macd_signal"]
     hist_prev  = prev["macd"] - prev["macd_signal"]
     hist_prev2 = prev2["macd"] - prev2["macd_signal"]
-    macd_converging = hist_last > hist_prev > hist_prev2
+    improving = hist_last > hist_prev > hist_prev2
+    convergence_rate = (hist_last - hist_prev2) / abs(hist_prev2) if hist_prev2 != 0 else 0
+    macd_converging = improving and convergence_rate >= 0.15
 
     return srsi_oversold and srsi_bullish and macd_below_zero and macd_below_signal and macd_converging
