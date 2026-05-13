@@ -1,0 +1,67 @@
+"""Scanner 2 — Loose Reversal. Wider thresholds than Scanner 1."""
+from datetime import date
+from scanner.client import get_client
+from scanner.data import fetch_daily_bars, fetch_crypto_bars
+from scanner.indicators2 import add_indicators, check_signals_loose
+from scanner.scan import _all_stocks, TOP_ETFS, CRYPTOS
+import time
+
+
+def print_account():
+    client = get_client()
+    account = client.get_account()
+    print(f"Account status : {account.status}")
+    print(f"Equity         : ${float(account.equity):,.2f}\n")
+
+
+def run_loose_scan() -> list[dict]:
+    stocks = list(dict.fromkeys(_all_stocks() + TOP_ETFS))
+    cryptos = CRYPTOS
+    print(f"[Scanner 2] Scanning {len(stocks)} stocks/ETFs + {len(cryptos)} cryptos...")
+
+    hits = []
+    for sym_list, fetch_fn in [(stocks, fetch_daily_bars), (cryptos, fetch_crypto_bars)]:
+        for i in range(0, len(sym_list), 50):
+            batch = sym_list[i:i + 50]
+            try:
+                bars = fetch_fn(batch)
+            except Exception:
+                time.sleep(2)
+                continue
+            for sym, df in bars.items():
+                try:
+                    df = add_indicators(df)
+                    if check_signals_loose(df):
+                        last = df.iloc[-1]
+                        hits.append({
+                            "symbol":      sym,
+                            "close":       round(last["close"], 2),
+                            "srsi_k":      round(last["srsi_k"], 1),
+                            "srsi_d":      round(last["srsi_d"], 1),
+                            "macd":        round(last["macd"], 2),
+                            "macd_signal": round(last["macd_signal"], 2),
+                        })
+                except Exception:
+                    continue
+            time.sleep(0.3)
+    return hits
+
+
+if __name__ == "__main__":
+    print_account()
+    hits = run_loose_scan()
+
+    if not hits:
+        print("No setups found today.")
+    else:
+        print(f"\n{'='*50}")
+        print(f"  SCANNER 2 — {len(hits)} SETUP(S) FOUND")
+        print(f"{'='*50}")
+        print(f"{'SYM':<8} {'CLOSE':>8} {'K':>6} {'D':>6} {'MACD':>8} {'SIG':>8}")
+        print(f"{'-'*50}")
+        for h in hits:
+            print(
+                f"{h['symbol']:<8} {h['close']:>8.2f} "
+                f"{h['srsi_k']:>6.1f} {h['srsi_d']:>6.1f} "
+                f"{h['macd']:>8.2f} {h['macd_signal']:>8.2f}"
+            )
