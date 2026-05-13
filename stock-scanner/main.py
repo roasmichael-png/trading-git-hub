@@ -17,14 +17,11 @@ def print_account():
 def build_message(hits: list[dict]) -> str:
     today = date.today().strftime("%b %d")
     if not hits:
-        return f"📊 *QQQ Scanner — {today}*\n\nNo setups found today."
-
-    lines = [f"📊 *QQQ Scanner — {today}*", f"_{len(hits)} setup(s) found_\n"]
+        return f"Scanner 1 (Tight Reversal) - {today}\n\nNo setups found."
+    lines = [f"Scanner 1 (Tight Reversal) - {today}", f"{len(hits)} setup(s)\n"]
     for h in hits:
         lines.append(
-            f"*{h['symbol']}* ${h['close']:.2f}\n"
-            f"  StochRSI K={h['srsi_k']} D={h['srsi_d']}\n"
-            f"  MACD={h['macd']:.2f} Signal={h['macd_signal']:.2f}"
+            f"{h['symbol']} ${h['close']:.2f} | K={h['srsi_k']} D={h['srsi_d']} | MACD={h['macd']:.2f}"
         )
     return "\n".join(lines)
 
@@ -37,7 +34,7 @@ if __name__ == "__main__":
         print("No setups found today.")
     else:
         print(f"\n{'='*50}")
-        print(f"  {len(hits)} SETUP(S) FOUND")
+        print(f"  SCANNER 1 — {len(hits)} SETUP(S) FOUND")
         print(f"{'='*50}")
         print(f"{'SYM':<6} {'CLOSE':>8} {'K':>6} {'D':>6} {'MACD':>8} {'SIG':>8}")
         print(f"{'-'*50}")
@@ -48,8 +45,6 @@ if __name__ == "__main__":
                 f"{h['macd']:>8.2f} {h['macd_signal']:>8.2f}"
             )
 
-    # Telegram disabled until credentials confirmed working
-    # if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
-    #     msg = build_message(hits)
-    #     send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
-    #     print("\nTelegram notification sent.")
+    if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
+        send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, build_message(hits))
+        print("Telegram sent.")

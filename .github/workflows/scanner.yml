@@ -1,0 +1,51 @@
+name: Daily Stock Scanner
+
+on:
+  schedule:
+    - cron: '30 14 * * 1-5'  # 9:30 AM EST (14:30 UTC) weekdays
+  workflow_dispatch:          # allow manual runs from GitHub
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    env:
+      ALPACA_API_KEY:    ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      ALPACA_BASE_URL:   https://paper-api.alpaca.markets
+      ALPACA_DATA_URL:   https://data.alpaca.markets/v2
+      TELEGRAM_TOKEN:    ${{ secrets.TELEGRAM_TOKEN }}
+      TELEGRAM_CHAT_ID:  ${{ secrets.TELEGRAM_CHAT_ID }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: claude/setup-trading-bot-NISEK
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: stock-scanner/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          cd stock-scanner
+          pip install -r requirements.txt
+
+      - name: Run Scanner 1 (Tight Reversal)
+        run: |
+          cd stock-scanner
+          python main.py
+
+      - name: Run Scanner 2 (Loose Reversal)
+        run: |
+          cd stock-scanner
+          python main2.py
+
+      - name: Run Scanner 3 (Trend Pullback)
+        run: |
+          cd stock-scanner
+          python main_trend.py

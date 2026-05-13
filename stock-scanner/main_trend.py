@@ -1,14 +1,12 @@
-"""Scanner 3 — Trend Pullback System.
-
-Finds strong uptrending stocks pulling back to key levels with
-momentum improvement and institutional-quality volume.
-"""
+"""Scanner 3 — Trend Pullback System."""
 import time
 from datetime import date
 from scanner.client import get_client
 from scanner.data import fetch_daily_bars, fetch_crypto_bars
 from scanner.indicators_trend import add_indicators, add_weekly, check_trend_signals
 from scanner.scan import _all_stocks, TOP_ETFS, CRYPTOS
+from scanner.telegram import send_telegram
+import config
 
 
 MARKET_SYMBOLS = ["QQQ", "SPY"]
@@ -122,3 +120,15 @@ if __name__ == "__main__":
                 f"{h['sma50']:>8.2f} {h['rsi']:>6.1f} {h['srsi_k']:>6.1f} "
                 f"{h['macd']:>8.2f} {h['rvol']:>6.2f}x"
             )
+
+    if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
+        today = date.today().strftime("%b %d")
+        if not hits:
+            msg = f"Scanner 3 (Trend Pullback) - {today}\n\nNo setups found."
+        else:
+            lines = [f"Scanner 3 (Trend Pullback) - {today}", f"{len(hits)} setup(s)\n"]
+            for h in hits:
+                lines.append(f"{h['symbol']} ${h['close']:.2f} | RSI={h['rsi']} RVOL={h['rvol']}x")
+            msg = "\n".join(lines)
+        send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
+        print("Telegram sent.")
