@@ -38,8 +38,6 @@ def run_scan() -> list[dict]:
                     hits.append({
                         "symbol": sym,
                         "close": round(last["close"], 2),
-                        "sma200": round(last["sma200"], 2),
-                        "pct_from_200": round((last["close"] / last["sma200"] - 1) * 100, 2),
                         "srsi_k": round(last["srsi_k"], 1),
                         "srsi_d": round(last["srsi_d"], 1),
                         "macd": round(last["macd"], 2),

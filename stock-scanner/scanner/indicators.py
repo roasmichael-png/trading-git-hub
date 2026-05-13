@@ -20,18 +20,12 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def check_signals(df: pd.DataFrame) -> bool:
-    if len(df) < 201:
-        return False
-
-    df = df.dropna(subset=["sma200", "srsi_k", "srsi_d", "macd", "macd_signal"])
+    df = df.dropna(subset=["srsi_k", "srsi_d", "macd", "macd_signal"])
     if len(df) < 3:
         return False
 
     last = df.iloc[-1]
     prev = df.iloc[-2]
-
-    # price within 3% below the 200 SMA (about to break above)
-    near_200 = last["sma200"] * 0.97 <= last["close"] < last["sma200"]
 
     # stoch RSI below 20 and K crossing above D
     srsi_oversold = last["srsi_k"] < 20
@@ -41,4 +35,4 @@ def check_signals(df: pd.DataFrame) -> bool:
     macd_deep = last["macd"] < -100
     macd_cross = prev["macd"] <= prev["macd_signal"] and last["macd"] > last["macd_signal"]
 
-    return near_200 and srsi_oversold and srsi_cross and macd_deep and macd_cross
+    return srsi_oversold and srsi_cross and macd_deep and macd_cross

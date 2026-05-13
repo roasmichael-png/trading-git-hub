@@ -21,11 +21,11 @@ if __name__ == "__main__":
         print(f"\n{'='*70}")
         print(f"  {len(hits)} SETUP(S) FOUND")
         print(f"{'='*70}")
-        print(f"{'SYM':<6} {'CLOSE':>8} {'SMA200':>8} {'%FROM':>7} {'K':>6} {'D':>6} {'MACD':>8} {'SIG':>8}")
-        print(f"{'-'*70}")
+        print(f"{'SYM':<6} {'CLOSE':>8} {'K':>6} {'D':>6} {'MACD':>8} {'SIG':>8}")
+        print(f"{'-'*50}")
         for h in hits:
             print(
-                f"{h['symbol']:<6} {h['close']:>8.2f} {h['sma200']:>8.2f} "
-                f"{h['pct_from_200']:>6.1f}% {h['srsi_k']:>6.1f} {h['srsi_d']:>6.1f} "
+                f"{h['symbol']:<6} {h['close']:>8.2f} "
+                f"{h['srsi_k']:>6.1f} {h['srsi_d']:>6.1f} "
                 f"{h['macd']:>8.2f} {h['macd_signal']:>8.2f}"
             )
