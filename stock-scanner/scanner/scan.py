@@ -142,27 +142,102 @@ ELITE_STOCKS = [
     "SPCE", "VST", "NNE",
 ]
 
+# Power / Grid / Industrial Tech
+POWER_INFRA = [
+    "PWR", "POWL", "ETN", "CARR", "MLI", "MOD", "IESC", "BDC",
+    "OUST", "AOSL", "CLF", "RCAT", "DYN", "MISL", "BE",
+    "TRMB", "IR", "AME", "ROK", "EMR", "GE", "PH",
+]
+
+# Cybersecurity
+CYBERSECURITY = [
+    "CRWD", "PANW", "ZS", "FTNT", "NET", "S", "CYBR", "OKTA", "RPD",
+    "TENB", "VRNS", "QLYS", "SAIL", "HACK", "CIBR",
+]
+
+# Robotics / Automation
+ROBOTICS = [
+    "ISRG", "PATH", "SYM", "CGNX", "ZBRA", "TER", "ROK", "ABB",
+    "NVDA", "TSLA", "SERV",
+]
+
+# Defense / Aerospace
+DEFENSE = [
+    "LMT", "RTX", "NOC", "GD", "LHX", "HII", "LDOS", "SAIC", "BAH", "CACI",
+    "KTOS", "AVAV", "AXON", "BA", "GE",
+]
+
+# Space
+SPACE = [
+    "RKLB", "ASTS", "LUNR", "PL", "SPCE", "IRDM", "GSAT", "RDW",
+]
+
+# Crypto-infrastructure stocks
+CRYPTO_INFRA_STOCKS = [
+    "COIN", "MSTR", "MARA", "RIOT", "CLSK", "CORZ", "CIFR", "BTBT", "HUT",
+    "HOOD", "SOFI",
+]
+
+# AI / Cloud software
+AI_SOFTWARE = [
+    "PLTR", "AI", "SOUN", "BBAI", "APP", "PATH", "SYM",
+    "SNOW", "DDOG", "MDB", "GTLB", "ESTC", "CFLT", "NET",
+    "CRWD", "NOW", "CRM", "WDAY", "TEAM", "ZM", "BILL", "TOST",
+    "DUOL", "GLBE", "FOUR", "SHOP",
+]
+
+# Arm Holdings + chip design
+CHIP_DESIGN = [
+    "ARM", "NVDA", "AMD", "AVGO", "QCOM", "MRVL", "INTC", "SMCI",
+]
+
 # Top ETFs
 TOP_ETFS = [
     "QQQ", "VOO", "VTI", "SPY", "IVV", "VUG", "SCHG", "VGT", "SMH", "SOXX",
     "BOTZ", "URA", "QTUM", "IWM", "IWF", "GLD", "IAU", "TLT", "HYG", "LQD",
     "XLK", "XLE", "XLF", "XLV", "XLI", "XLY", "XLP", "XLU", "XLB", "XLC",
-    "ARKK", "ARKG", "ARKW", "ARKF", "SCHD", "VNQ", "VEA", "VWO", "EFA", "EEM",
+    "ARKK", "ARKG", "ARKW", "ARKF", "ARKQ", "SCHD", "VNQ", "VEA", "VWO", "EFA", "EEM",
     "IEFA", "IEMG", "AGG", "BND", "VCIT", "VIG", "USMV", "SPDW", "SPEM",
     "CIBR", "HACK", "BUG", "WCLD", "CLOU", "IPAY", "FINX",
     "JETS", "ROBO", "DRIV", "KARS", "BETZ",
-    "IBB", "XBI", "ARKG", "PBE", "BBH",
+    "IBB", "XBI", "PBE", "BBH",
     "REMX", "LIT", "COPX", "SIL", "GDX", "GDXJ",
-    "TAN", "ICLN", "QCLN", "FAN",
+    "TAN", "ICLN", "QCLN", "FAN", "GRID",
+    "SHLD", "ITA", "XAR", "UFO", "ARKX",
+    "AIQ", "CHAT",
 ]
 
-# Crypto
+# Crypto — all Alpaca-supported pairs (unsupported ones silently skipped)
 CRYPTOS = [
-    "BTC/USD", "ETH/USD", "SOL/USD", "XRP/USD", "LINK/USD",
-    "AVAX/USD", "RNDR/USD", "SUI/USD", "NEAR/USD", "FET/USD",
-    "DOGE/USD", "ADA/USD", "DOT/USD", "LTC/USD", "BCH/USD",
-    "UNI/USD", "AAVE/USD", "ALGO/USD", "ATOM/USD", "MATIC/USD",
-    "MKR/USD", "CRV/USD", "GRT/USD", "BAT/USD",
+    # Layer 1 majors
+    "BTC/USD", "ETH/USD", "SOL/USD", "XRP/USD", "ADA/USD", "AVAX/USD",
+    "DOGE/USD", "DOT/USD", "ATOM/USD", "ALGO/USD", "LTC/USD", "BCH/USD",
+    # AI + Compute
+    "RNDR/USD", "FET/USD", "NEAR/USD", "TAO/USD", "AGIX/USD", "OCEAN/USD",
+    "AKT/USD", "WLD/USD",
+    # Layer 1 — newer
+    "SUI/USD", "APT/USD", "SEI/USD", "HBAR/USD", "ICP/USD", "EGLD/USD",
+    # DeFi / Infrastructure
+    "LINK/USD", "UNI/USD", "AAVE/USD", "MKR/USD", "CRV/USD", "LDO/USD",
+    "JUP/USD", "RAY/USD", "PYTH/USD", "PENDLE/USD",
+    # Layer 2 / Scaling
+    "MATIC/USD", "ARB/USD", "OP/USD", "STRK/USD", "TIA/USD", "MNT/USD",
+    "LRC/USD", "ZK/USD",
+    # Gaming / Metaverse
+    "IMX/USD", "GALA/USD", "SAND/USD", "MANA/USD", "AXS/USD", "ENJ/USD",
+    "RON/USD", "APE/USD",
+    # Meme coins
+    "SHIB/USD", "PEPE/USD", "BONK/USD", "WIF/USD", "FLOKI/USD",
+    # RWA / Finance
+    "ONDO/USD", "ENA/USD", "OM/USD", "DYDX/USD", "GMX/USD",
+    # Exchange tokens
+    "CRO/USD",
+    # Privacy / Specialized
+    "XMR/USD", "ZEC/USD", "MINA/USD", "AR/USD", "FIL/USD",
+    "THETA/USD", "HNT/USD", "CHZ/USD", "VET/USD", "QNT/USD",
+    "XLM/USD",
+    # Infrastructure
+    "GRT/USD", "BAT/USD",
 ]
 
 
@@ -171,7 +246,9 @@ def _all_stocks() -> list[str]:
         QQQ_HOLDINGS + SMH_HOLDINGS + VGT_HOLDINGS + BOTZ_HOLDINGS +
         URA_HOLDINGS + QTUM_HOLDINGS + SCHG_HOLDINGS + ELITE_STOCKS +
         SP500_FINANCIALS + SP500_HEALTHCARE + SP500_ENERGY +
-        SP500_INDUSTRIALS + SP500_CONSUMER + MOMENTUM_STOCKS
+        SP500_INDUSTRIALS + SP500_CONSUMER + MOMENTUM_STOCKS +
+        POWER_INFRA + CYBERSECURITY + ROBOTICS + DEFENSE + SPACE +
+        CRYPTO_INFRA_STOCKS + AI_SOFTWARE + CHIP_DESIGN
     )
     return list(dict.fromkeys(combined))  # dedupe, preserve order
 
