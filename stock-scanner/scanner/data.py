@@ -1,7 +1,10 @@
 import pandas as pd
 from datetime import datetime, timedelta
-from alpaca_trade_api.rest import TimeFrame
+from alpaca_trade_api.rest import TimeFrame, TimeFrameUnit
 from scanner.client import get_client
+
+TIMEFRAME = TimeFrame(4, TimeFrameUnit.Hour)  # switch to TimeFrame.Day for daily
+LOOKBACK_DAYS = 500  # needs more days for 4h bars to build 200-period indicators
 
 
 def _date_range(days: int):
@@ -10,14 +13,14 @@ def _date_range(days: int):
     return start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d")
 
 
-def fetch_daily_bars(symbols: list[str], days: int = 300) -> dict[str, pd.DataFrame]:
+def fetch_daily_bars(symbols: list[str], days: int = LOOKBACK_DAYS) -> dict[str, pd.DataFrame]:
     client = get_client()
     start_str, end_str = _date_range(days)
     results = {}
     for sym in symbols:
         try:
             raw = client.get_bars(
-                sym, TimeFrame.Day, start_str, end_str,
+                sym, TIMEFRAME, start_str, end_str,
                 adjustment="raw", feed="iex",
             ).df
             if raw.empty or len(raw) < 30:
@@ -29,13 +32,13 @@ def fetch_daily_bars(symbols: list[str], days: int = 300) -> dict[str, pd.DataFr
     return results
 
 
-def fetch_crypto_bars(symbols: list[str], days: int = 300) -> dict[str, pd.DataFrame]:
+def fetch_crypto_bars(symbols: list[str], days: int = LOOKBACK_DAYS) -> dict[str, pd.DataFrame]:
     client = get_client()
     start_str, end_str = _date_range(days)
     results = {}
     for sym in symbols:
         try:
-            raw = client.get_crypto_bars(sym, TimeFrame.Day, start_str, end_str).df
+            raw = client.get_crypto_bars(sym, TIMEFRAME, start_str, end_str).df
             if raw.empty or len(raw) < 30:
                 continue
             if isinstance(raw.index, pd.MultiIndex):
