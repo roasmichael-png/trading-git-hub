@@ -48,7 +48,8 @@ if __name__ == "__main__":
                 f"{h['macd']:>8.2f} {h['macd_signal']:>8.2f}"
             )
 
-    if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
-        msg = build_message(hits)
-        send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
-        print("\nTelegram notification sent.")
+    # Telegram disabled until credentials confirmed working
+    # if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
+    #     msg = build_message(hits)
+    #     send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
+    #     print("\nTelegram notification sent.")
