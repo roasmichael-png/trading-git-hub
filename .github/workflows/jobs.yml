@@ -1,0 +1,39 @@
+name: Weekly Job Postings Scanner
+
+on:
+  schedule:
+    - cron: '0 14 * * 2'  # 9:00 AM EST (14:00 UTC) every Tuesday
+  workflow_dispatch:
+
+jobs:
+  jobs-scan:
+    runs-on: ubuntu-latest
+
+    env:
+      ADZUNA_APP_ID:   ${{ secrets.ADZUNA_APP_ID }}
+      ADZUNA_APP_KEY:  ${{ secrets.ADZUNA_APP_KEY }}
+      TELEGRAM_TOKEN:  ${{ secrets.TELEGRAM_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: claude/setup-trading-bot-NISEK
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: stock-scanner/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          cd stock-scanner
+          pip install -r requirements.txt
+
+      - name: Run Job Postings Scanner
+        run: |
+          cd stock-scanner
+          python main_jobs.py
