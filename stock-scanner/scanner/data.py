@@ -8,27 +8,24 @@ def fetch_daily_bars(symbols: list[str], days: int = 300) -> dict[str, pd.DataFr
     client = get_client()
     end = datetime.now()
     start = end - timedelta(days=days)
-
-    raw = client.get_bars(
-        symbols,
-        TimeFrame.Day,
-        start.strftime("%Y-%m-%d"),
-        end.strftime("%Y-%m-%d"),
-        adjustment="raw",
-        feed="iex",
-    ).df
-
-    if raw.empty:
-        return {}
+    start_str = start.strftime("%Y-%m-%d")
+    end_str = end.strftime("%Y-%m-%d")
 
     results = {}
-    if isinstance(raw.index, pd.MultiIndex):
-        for sym in raw.index.get_level_values("symbol").unique():
-            df = raw.xs(sym, level="symbol").copy()
-            df.index = pd.to_datetime(df.index)
-            results[sym] = df
-    else:
-        raw.index = pd.to_datetime(raw.index)
-        results[symbols[0]] = raw
+    for sym in symbols:
+        try:
+            raw = client.get_bars(
+                sym,
+                TimeFrame.Day,
+                start_str,
+                end_str,
+                adjustment="raw",
+            ).df
+            if raw.empty or len(raw) < 30:
+                continue
+            raw.index = pd.to_datetime(raw.index)
+            results[sym] = raw
+        except Exception:
+            continue
 
     return results
