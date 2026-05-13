@@ -6,14 +6,22 @@ from scanner.indicators import add_indicators, check_signals
 
 BATCH_SIZE = 50
 
+QQQ_HOLDINGS = [
+    "AAPL", "MSFT", "NVDA", "AMZN", "META", "GOOGL", "GOOG", "TSLA", "AVGO", "COST",
+    "NFLX", "TMUS", "AMD", "PEP", "CSCO", "ADBE", "INTU", "CMCSA", "TXN", "AMGN",
+    "QCOM", "ISRG", "AMAT", "BKNG", "MU", "LRCX", "REGN", "KLAC", "MELI", "MDLZ",
+    "PANW", "SNPS", "CDNS", "CRWD", "FTNT", "ADI", "MRVL", "ABNB", "ORLY", "CHTR",
+    "WDAY", "NXPI", "MNST", "PYPL", "DXCM", "BIIB", "IDXX", "VRTX", "ADP", "GILD",
+    "PAYX", "TEAM", "ODFL", "GEHC", "VRSK", "FANG", "ON", "CSGP", "ZS", "SBUX",
+    "DLTR", "ROST", "FAST", "BKR", "XEL", "CTSH", "PCAR", "WBD", "ALGN", "ILMN",
+    "ZM", "DDOG", "TTD", "ENPH", "MRNA", "CEG", "CPRT", "CCEP", "TTWO", "ROP",
+    "CSX", "MCHP", "ANSS", "GEHC", "KDP", "EXC", "SPLK", "GFS", "RIVN", "LCID",
+    "SIRI", "FITB", "HON", "PDD", "CDW", "CTAS", "VRSK", "AEP", "LULU", "EBAY",
+]
+
 
 def get_universe() -> list[str]:
-    client = get_client()
-    assets = client.list_assets(status="active", asset_class="us_equity")
-    return [
-        a.symbol for a in assets
-        if a.tradable and a.fractionable and "." not in a.symbol
-    ]
+    return list(dict.fromkeys(QQQ_HOLDINGS))  # dedupe, preserve order
 
 
 def run_scan() -> list[dict]:
