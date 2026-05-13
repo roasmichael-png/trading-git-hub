@@ -28,15 +28,15 @@ def check_signals(df: pd.DataFrame) -> bool:
     prev  = df.iloc[-2]
     prev2 = df.iloc[-3]
 
-    # stoch RSI: K below 20 and K just crossed above D
+    # stoch RSI: K below 20 and K above D (oversold with bullish momentum)
     srsi_oversold = last["srsi_k"] < 20
-    srsi_cross = prev["srsi_k"] <= prev["srsi_d"] and last["srsi_k"] > last["srsi_d"]
+    srsi_bullish = last["srsi_k"] > last["srsi_d"]
 
     # MACD: still below signal but histogram shrinking for 2+ bars (converging)
     macd_below_signal = last["macd"] < last["macd_signal"]
     hist_last  = last["macd"] - last["macd_signal"]
     hist_prev  = prev["macd"] - prev["macd_signal"]
     hist_prev2 = prev2["macd"] - prev2["macd_signal"]
-    macd_converging = hist_last > hist_prev > hist_prev2  # gap closing 2 bars in a row
+    macd_converging = hist_last > hist_prev > hist_prev2
 
-    return srsi_oversold and srsi_cross and macd_below_signal and macd_converging
+    return srsi_oversold and srsi_bullish and macd_below_signal and macd_converging
