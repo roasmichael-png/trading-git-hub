@@ -1,3 +1,5 @@
+import json
+import os
 from datetime import date
 from scanner.client import get_client
 from scanner.scan import run_scan
@@ -92,3 +94,29 @@ if __name__ == "__main__":
 
     if config.TELEGRAM_TOKEN and config.TELEGRAM_CHAT_ID:
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, build_message(hits))
+
+    # Save results for dashboard
+    ranked = sorted(hits, key=score, reverse=True)
+    results = []
+    for h in ranked:
+        sc = score(h)
+        results.append({
+            "symbol": h["symbol"],
+            "close":  h["close"],
+            "rating": "STRONG BUY" if sc >= 8 else "BUY" if sc >= 5 else "WATCH",
+            "note":   format_hit(h).split("\n")[1].strip(),
+            "entry":  h["close"],
+            "stop":   round(h["close"] * 0.93, 2),
+            "target": round(h["close"] * 1.18, 2),
+            "scanner": 1,
+        })
+    results_path = os.path.join(os.path.dirname(__file__), "..", "results", "scanner_results.json")
+    try:
+        existing = json.loads(open(results_path).read()) if os.path.exists(results_path) else {}
+    except Exception:
+        existing = {}
+    existing["scanner1"] = results
+    existing["timestamp"] = date.today().isoformat()
+    os.makedirs(os.path.dirname(results_path), exist_ok=True)
+    with open(results_path, "w") as f:
+        json.dump(existing, f, indent=2)

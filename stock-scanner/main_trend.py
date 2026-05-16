@@ -1,4 +1,6 @@
 """Scanner 3 — Trend Pullback System."""
+import json
+import os
 import time
 from datetime import date
 from scanner.client import get_client
@@ -172,3 +174,46 @@ if __name__ == "__main__":
                 )
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
+
+    # Save results for dashboard
+    def _score(h):
+        s = 0
+        k = h["srsi_k"]
+        if k < 15: s += 5
+        elif k < 20: s += 4
+        elif k < 25: s += 3
+        elif k < 30: s += 2
+        rvol = h["rvol"]
+        if rvol >= 2.5: s += 4
+        elif rvol >= 2.0: s += 3
+        elif rvol >= 1.5: s += 2
+        elif rvol >= 1.2: s += 1
+        if h["rsi"] < 40: s += 2
+        elif h["rsi"] < 50: s += 1
+        if h["macd"] > h["macd_sig"]: s += 2
+        return s
+
+    ranked = sorted(hits, key=_score, reverse=True)
+    s3_results = []
+    for h in ranked:
+        sc = _score(h)
+        s3_results.append({
+            "symbol":  h["symbol"],
+            "close":   h["close"],
+            "rating":  "STRONG BUY" if sc >= 9 else "BUY" if sc >= 6 else "WATCH",
+            "note":    f"Trend pullback | RVOL {h['rvol']}x | RSI {h['rsi']}",
+            "entry":   h["close"],
+            "stop":    round(h["close"] * 0.90, 2),
+            "target":  round(h["close"] * 1.20, 2),
+            "scanner": 3,
+        })
+    results_path = os.path.join(os.path.dirname(__file__), "..", "results", "scanner_results.json")
+    try:
+        existing = json.loads(open(results_path).read()) if os.path.exists(results_path) else {}
+    except Exception:
+        existing = {}
+    existing["scanner3"] = s3_results
+    existing["timestamp"] = date.today().isoformat()
+    os.makedirs(os.path.dirname(results_path), exist_ok=True)
+    with open(results_path, "w") as f:
+        json.dump(existing, f, indent=2)

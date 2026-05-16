@@ -54,6 +54,7 @@ export default function App() {
   const [tab, setTab] = useState('all')
   const [prices, setPrices] = useState({})
   const [crypto, setCrypto] = useState({})
+  const [signals, setSignals] = useState([])
   const [checked, setChecked] = useState({})
   const [outfits, setOutfits] = useState([])
   const [outfitLoading, setOutfitLoading] = useState(false)
@@ -86,10 +87,21 @@ export default function App() {
     } catch {}
   }, [])
 
+  const fetchSignals = useCallback(async () => {
+    try {
+      const url = 'https://raw.githubusercontent.com/roasmichael-png/trading-git-hub/claude/setup-trading-bot-NISEK/results/scanner_results.json'
+      const r = await fetch(url)
+      if (!r.ok) return
+      const d = await r.json()
+      const all = [...(d.scanner1 || []), ...(d.scanner3 || [])]
+      setSignals(all)
+    } catch {}
+  }, [])
+
   const refresh = useCallback(async () => {
-    await Promise.all([fetchCrypto(), fetchStocks()])
+    await Promise.all([fetchCrypto(), fetchStocks(), fetchSignals()])
     setUpdated(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))
-  }, [fetchCrypto, fetchStocks])
+  }, [fetchCrypto, fetchStocks, fetchSignals])
 
   useEffect(() => { refresh() }, [refresh])
 
@@ -171,28 +183,32 @@ export default function App() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
 
         {(tab === 'all' || tab === 'scanner') && (
-          <div style={s.card}>
+          <div style={{ ...s.card, gridColumn: '1 / -1' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
               <div style={{ ...s.lbl, marginBottom: 0 }}>📡 Scanner signals</div>
               <span style={{ fontSize: 10, padding: '3px 8px', borderRadius: 10, background: '#0a2a0f', color: '#4ade80', border: '0.5px solid #1a4a1f' }}>
-                {buys > 0 ? `${buys} signals` : '10am EST'}
+                {signals.length > 0 ? `${signals.length} signals` : 'Updates 10am EST'}
               </span>
             </div>
-            <div style={{ fontSize: 10, color: '#444', marginBottom: 10 }}>200MA + Stoch + MACD</div>
-            {SCANNER.map((stock, i) => {
-              const d = prices[stock.ticker]; const sg = getSig(d?.change)
+            <div style={{ fontSize: 10, color: '#444', marginBottom: 10 }}>StochRSI + MACD + Volume — same signals sent to Telegram</div>
+            {signals.length === 0 && (
+              <div style={{ fontSize: 12, color: '#444', textAlign: 'center', padding: '16px 0' }}>No signals yet — updates daily at 10am EST</div>
+            )}
+            {signals.map((h, i) => {
+              const ratingColor = h.rating === 'STRONG BUY' ? '#4ade80' : h.rating === 'BUY' ? '#fbbf24' : '#888'
+              const ratingBg    = h.rating === 'STRONG BUY' ? '#0a2a0f' : h.rating === 'BUY' ? '#2a1a00' : '#1a1a1e'
               return (
-                <div key={stock.ticker} style={{ ...s.row, borderBottom: i === SCANNER.length - 1 ? 'none' : '0.5px solid #1a1a1e' }}>
-                  <div>
-                    <div style={{ fontSize: 12, fontWeight: 500, color: '#fff', fontFamily: 'DM Mono, monospace' }}>
-                      {stock.ticker}
-                      <span style={{ fontSize: 9, padding: '2px 6px', borderRadius: 8, background: sg.bg, color: sg.c, marginLeft: 5, border: `0.5px solid ${sg.c}33` }}>{sg.l}</span>
+                <div key={i} style={{ ...s.row, borderBottom: i === signals.length - 1 ? 'none' : '0.5px solid #1a1a1e', flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontSize: 13, fontWeight: 500, color: '#fff', fontFamily: 'DM Mono, monospace' }}>{h.symbol}</span>
+                      <span style={{ fontSize: 9, padding: '2px 7px', borderRadius: 8, background: ratingBg, color: ratingColor, border: `0.5px solid ${ratingColor}44` }}>{h.rating}</span>
                     </div>
-                    <div style={{ fontSize: 10, color: '#444', marginTop: 1 }}>{stock.name}</div>
+                    <span style={{ fontSize: 12, color: '#fff', fontFamily: 'DM Mono, monospace' }}>${h.close?.toFixed(2)}</span>
                   </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: 12, fontWeight: 500, color: '#fff', fontFamily: 'DM Mono, monospace' }}>{fmtP(d?.price)}</div>
-                    <div style={{ fontSize: 10, color: sigColor(d?.change) }}>{fmtC(d?.change)}</div>
+                  <div style={{ fontSize: 10, color: '#555' }}>{h.note}</div>
+                  <div style={{ fontSize: 10, color: '#444' }}>
+                    Entry ${h.entry?.toFixed(2)} · Stop ${h.stop?.toFixed(2)} · Target ${h.target?.toFixed(2)}
                   </div>
                 </div>
               )
