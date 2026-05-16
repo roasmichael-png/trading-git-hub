@@ -3,9 +3,9 @@ import requests
 import json
 from datetime import datetime
 
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
+ANTHROPIC_API_KEY  = os.environ["ANTHROPIC_API_KEY"].strip()
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"].strip()
+TELEGRAM_CHAT_ID   = os.environ["TELEGRAM_CHAT_ID"].strip()
 
 SYSTEM_PROMPT = """You are a personal lifestyle assistant for a man in San Diego, CA.
 His style: old money, Ralph Lauren, classy and sexy. J.Crew, Todd Snyder, Polo RL only.
