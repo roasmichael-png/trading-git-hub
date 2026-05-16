@@ -77,7 +77,7 @@ export default function App() {
   const fetchStocks = useCallback(async () => {
     try {
       const syms = SCANNER.map(s => s.ticker).join(',')
-      const r = await fetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${syms}`)
+      const r = await fetch(`/api/stocks?symbols=${syms}`)
       if (!r.ok) return
       const d = await r.json()
       const map = {}
