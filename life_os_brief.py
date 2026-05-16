@@ -68,9 +68,12 @@ Generate the daily brief now."""
 
 
 def get_brief() -> str:
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"].strip())
+    client = anthropic.Anthropic(
+        api_key=os.environ["ANTHROPIC_API_KEY"].strip(),
+        default_headers={"anthropic-beta": "web-search-2025-03-05"},
+    )
     response = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         max_tokens=1500,
         system=SYSTEM_PROMPT,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
