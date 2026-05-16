@@ -1,9 +1,9 @@
 import os
-import requests
-import json
+import urllib.request
+import urllib.parse
+import anthropic
 from datetime import datetime
 
-ANTHROPIC_API_KEY  = os.environ["ANTHROPIC_API_KEY"].strip()
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"].strip()
 TELEGRAM_CHAT_ID   = os.environ["TELEGRAM_CHAT_ID"].strip()
 
@@ -66,42 +66,30 @@ Search for:
 
 Generate the daily brief now."""
 
-def get_brief():
-    response = requests.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={
-            "x-api-key": ANTHROPIC_API_KEY,
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json",
-        },
-        json={
-            "model": "claude-sonnet-4-20250514",
-            "max_tokens": 1500,
-            "tools": [{"type": "web_search_20250305", "name": "web_search"}],
-            "system": SYSTEM_PROMPT,
-            "messages": [{"role": "user", "content": USER_PROMPT}],
-        },
-        timeout=120,
-    )
-    response.raise_for_status()
-    data = response.json()
 
+def get_brief() -> str:
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"].strip())
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=1500,
+        system=SYSTEM_PROMPT,
+        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+        messages=[{"role": "user", "content": USER_PROMPT}],
+    )
     text = ""
-    for block in data.get("content", []):
-        if block.get("type") == "text":
-            text += block.get("text", "")
+    for block in response.content:
+        if hasattr(block, "text"):
+            text += block.text
     return text.strip()
 
-def send_telegram(message):
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
-        "text": message,
-        "disable_web_page_preview": False,
-    }
-    response = requests.post(url, json=payload, timeout=30)
-    response.raise_for_status()
-    print("Sent to Telegram successfully")
+
+def send_telegram(message: str) -> None:
+    url  = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    data = urllib.parse.urlencode({"chat_id": TELEGRAM_CHAT_ID, "text": message}).encode()
+    req  = urllib.request.Request(url, data=data)
+    urllib.request.urlopen(req, timeout=30)
+    print("Sent to Telegram successfully.")
+
 
 if __name__ == "__main__":
     print("Generating Life OS brief...")

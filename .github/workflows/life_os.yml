@@ -21,15 +21,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install anthropic requests
 
       - name: Run Life OS brief
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          export ANTHROPIC_API_KEY=$(echo -n "$ANTHROPIC_API_KEY" | tr -d '[:space:]')
-          export TELEGRAM_BOT_TOKEN=$(echo -n "$TELEGRAM_BOT_TOKEN" | tr -d '[:space:]')
-          export TELEGRAM_CHAT_ID=$(echo -n "$TELEGRAM_CHAT_ID" | tr -d '[:space:]')
-          python life_os_brief.py
+        run: python life_os_brief.py
