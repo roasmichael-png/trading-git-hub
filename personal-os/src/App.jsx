@@ -46,7 +46,7 @@ export default function App() {
       const r = await fetch(url)
       if (!r.ok) return
       const d = await r.json()
-      const all = [...(d.scanner1 || []), ...(d.scanner3 || [])]
+      const all = [...(d.scanner1 || []), ...(d.scanner2 || []), ...(d.scanner3 || [])]
       setSignals(all)
     } catch {}
   }, [])

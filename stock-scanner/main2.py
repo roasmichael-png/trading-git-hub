@@ -1,11 +1,13 @@
 """Scanner 2 — Loose Reversal. Wider thresholds than Scanner 1."""
 from datetime import date
 from scanner.client import get_client
-from scanner.data import fetch_daily_bars, fetch_crypto_bars
+from scanner.data import fetch_daily_bars
 from scanner.indicators2 import add_indicators, check_signals_loose
-from scanner.scan import _all_stocks, TOP_ETFS, CRYPTOS
+from scanner.scan import _all_stocks, TOP_ETFS
 from scanner.telegram import send_telegram
 import config
+import json
+import os
 import time
 
 
@@ -108,3 +110,44 @@ if __name__ == "__main__":
                 )
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
+
+    # Save results for dashboard
+    def _score(h):
+        s = 0
+        k = h["srsi_k"]
+        if k < 15:   s += 4
+        elif k < 20: s += 3
+        elif k < 25: s += 2
+        elif k < 30: s += 1
+        if h["macd"] > h["macd_signal"]: s += 3
+        rvol = h.get("rvol", 0)
+        if rvol >= 2.0:   s += 3
+        elif rvol >= 1.5: s += 2
+        elif rvol >= 1.2: s += 1
+        return s
+
+    ranked = sorted(hits, key=_score, reverse=True)
+    s2_results = []
+    for h in ranked:
+        sc = _score(h)
+        close = h["close"]
+        s2_results.append({
+            "symbol":  h["symbol"],
+            "close":   close,
+            "rating":  "STRONG BUY" if sc >= 7 else "BUY" if sc >= 4 else "WATCH",
+            "note":    f"Loose reversal | StochRSI {h['srsi_k']} | MACD {'up' if h['macd'] > h['macd_signal'] else 'turning'}",
+            "entry":   close,
+            "stop":    round(close * 0.93, 2),
+            "target":  round(close * 1.18, 2),
+            "scanner": 2,
+        })
+    results_path = os.path.join(os.path.dirname(__file__), "..", "results", "scanner_results.json")
+    try:
+        existing = json.loads(open(results_path).read()) if os.path.exists(results_path) else {}
+    except Exception:
+        existing = {}
+    existing["scanner2"] = s2_results
+    existing["timestamp"] = date.today().isoformat()
+    os.makedirs(os.path.dirname(results_path), exist_ok=True)
+    with open(results_path, "w") as f:
+        json.dump(existing, f, indent=2)
