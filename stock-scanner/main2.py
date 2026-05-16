@@ -73,14 +73,39 @@ if __name__ == "__main__":
         if not hits:
             msg = f"Scanner 2 (Loose Reversal) - {today}\n\nNo setups found."
         else:
-            lines = [f"Scanner 2 (Loose Reversal) - {today}", f"{len(hits)} setup(s)\n"]
-            for h in hits:
-                k    = h["srsi_k"]
-                macd = h["macd"]
-                sig  = h["macd_signal"]
-                oversold = "Deeply oversold" if k < 20 else "Oversold"
-                momentum = "MACD crossing up" if macd > sig else "MACD turning up"
-                rating   = "Good setup" if k < 25 else "Watch for entry"
-                lines.append(f"{h['symbol']} — {oversold}, {momentum}. {rating}.")
+            def _score(h):
+                s = 0
+                k = h["srsi_k"]
+                if k < 15:   s += 4
+                elif k < 20: s += 3
+                elif k < 25: s += 2
+                elif k < 30: s += 1
+                if h["macd"] > h["macd_signal"]: s += 3
+                rvol = h.get("rvol", 0)
+                if rvol >= 2.0:   s += 3
+                elif rvol >= 1.5: s += 2
+                elif rvol >= 1.2: s += 1
+                return s
+
+            ranked = sorted(hits, key=_score, reverse=True)
+            lines  = [f"Scanner 2 (Loose Reversal) - {today}", f"{len(ranked)} setup(s)\n"]
+            for h in ranked:
+                k     = h["srsi_k"]
+                macd  = h["macd"]
+                sig   = h["macd_signal"]
+                rvol  = h.get("rvol", 0)
+                close = h["close"]
+                strength = "Deeply oversold" if k < 20 else "Oversold"
+                momentum = "MACD crossed up" if macd > sig else "MACD turning up"
+                vol_note = f" | Vol {rvol:.1f}x" if rvol >= 1.2 else ""
+                stop   = round(close * 0.93, 2)
+                target = round(close * 1.18, 2)
+                sc = _score(h)
+                rating = "STRONG BUY" if sc >= 7 else "BUY" if sc >= 4 else "WATCH"
+                lines.append(
+                    f"{h['symbol']} [{rating}]\n"
+                    f"  {strength}, {momentum}{vol_note}\n"
+                    f"  Entry ~${close:.2f} | Stop ${stop:.2f} | Target ${target:.2f}"
+                )
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)

@@ -269,12 +269,13 @@ def _scan_symbols(symbols: list[str], fetch_fn) -> list[dict]:
                 if check_signals(df):
                     last = df.iloc[-1]
                     hits.append({
-                        "symbol": sym,
+                        "symbol":      sym,
                         "close":       round(last["close"], 2),
                         "srsi_k":      round(last["srsi_k"], 1),
                         "srsi_d":      round(last["srsi_d"], 1),
                         "macd":        round(last["macd"], 2),
                         "macd_signal": round(last["macd_signal"], 2),
+                        "rvol":        round(last["rvol"], 2) if "rvol" in last and last["rvol"] == last["rvol"] else 0.0,
                     })
             except Exception:
                 continue

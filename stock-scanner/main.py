@@ -14,37 +14,60 @@ def print_account():
     print(f"Buying power   : ${float(account.buying_power):,.2f}\n")
 
 
-def analyze(h: dict) -> str:
+def score(h: dict) -> int:
+    s = 0
     k = h["srsi_k"]
+    if k < 10:   s += 5
+    elif k < 15: s += 4
+    elif k < 20: s += 3
+    elif k < 25: s += 2
+    elif k < 30: s += 1
+    if h["macd"] > h["macd_signal"]: s += 3   # already crossed up
+    rvol = h.get("rvol", 0)
+    if rvol >= 2.0:   s += 3
+    elif rvol >= 1.5: s += 2
+    elif rvol >= 1.2: s += 1
+    return s
+
+
+def format_hit(h: dict) -> str:
+    k    = h["srsi_k"]
+    rvol = h.get("rvol", 0)
     macd = h["macd"]
     sig  = h["macd_signal"]
+    close = h["close"]
 
-    if k < 10:
-        oversold = "Extremely oversold"
-    elif k < 20:
-        oversold = "Deeply oversold"
-    else:
-        oversold = "Oversold"
+    if k < 10:   strength = "Extremely oversold"
+    elif k < 20: strength = "Deeply oversold"
+    else:         strength = "Oversold"
 
-    momentum = "MACD crossing up" if macd > sig else "MACD turning up"
+    momentum = "MACD crossed up" if macd > sig else "MACD turning up"
+    vol_note = f" | Vol {rvol:.1f}x" if rvol >= 1.2 else ""
 
-    if k < 15:
-        rating = "Strong buy signal"
-    elif k < 20:
-        rating = "Good setup"
-    else:
-        rating = "Watch for entry"
+    entry  = close
+    stop   = round(close * 0.93, 2)
+    target = round(close * 1.18, 2)
 
-    return f"{oversold}, {momentum}. {rating}."
+    sc = score(h)
+    if sc >= 8:   rating = "STRONG BUY"
+    elif sc >= 5: rating = "BUY"
+    else:          rating = "WATCH"
+
+    return (
+        f"{h['symbol']} [{rating}]\n"
+        f"  {strength}, {momentum}{vol_note}\n"
+        f"  Entry ~${entry:.2f} | Stop ${stop:.2f} | Target ${target:.2f}"
+    )
 
 
 def build_message(hits: list[dict]) -> str:
     today = date.today().strftime("%b %d")
     if not hits:
         return f"Scanner 1 (Tight Reversal) - {today}\n\nNo setups found."
-    lines = [f"Scanner 1 (Tight Reversal) - {today}", f"{len(hits)} setup(s)\n"]
-    for h in hits:
-        lines.append(f"{h['symbol']} — {analyze(h)}")
+    ranked = sorted(hits, key=score, reverse=True)
+    lines  = [f"Scanner 1 (Tight Reversal) - {today}", f"{len(ranked)} setup(s)\n"]
+    for h in ranked:
+        lines.append(format_hit(h))
     return "\n".join(lines)
 
 

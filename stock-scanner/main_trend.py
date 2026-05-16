@@ -126,28 +126,49 @@ if __name__ == "__main__":
         if not hits:
             msg = f"Scanner 3 (Trend Pullback) - {today}\n\nNo setups found."
         else:
-            lines = [f"Scanner 3 (Trend Pullback) - {today}", f"{len(hits)} setup(s)\n"]
-            for h in hits:
-                rsi  = h["rsi"]
+            def _score(h):
+                s = 0
+                k = h["srsi_k"]
+                if k < 15:   s += 5
+                elif k < 20: s += 4
+                elif k < 25: s += 3
+                elif k < 30: s += 2
                 rvol = h["rvol"]
-                k    = h["srsi_k"]
+                if rvol >= 2.5:   s += 4
+                elif rvol >= 2.0: s += 3
+                elif rvol >= 1.5: s += 2
+                elif rvol >= 1.2: s += 1
+                if h["rsi"] < 40: s += 2
+                elif h["rsi"] < 50: s += 1
+                if h["macd"] > h["macd_sig"]: s += 2
+                return s
 
-                if k < 20:
-                    momentum = "deeply oversold pullback"
-                elif rsi < 45:
-                    momentum = "clean RSI reset"
-                else:
-                    momentum = "controlled pullback"
+            ranked = sorted(hits, key=_score, reverse=True)
+            lines  = [f"Scanner 3 (Trend Pullback) - {today}", f"{len(ranked)} setup(s)\n"]
+            for h in ranked:
+                k     = h["srsi_k"]
+                rvol  = h["rvol"]
+                rsi   = h["rsi"]
+                close = h["close"]
+                ema21 = h["ema21"]
 
-                volume = "heavy volume" if rvol >= 2.0 else "above-avg volume" if rvol >= 1.5 else "mild volume"
+                if k < 20:        pullback = "Deeply oversold pullback"
+                elif rsi < 45:    pullback = "Clean RSI reset"
+                else:              pullback = "Controlled pullback"
 
-                if k < 20 and rvol >= 1.5:
-                    rating = "Strong buy signal"
-                elif k < 30:
-                    rating = "Good setup"
-                else:
-                    rating = "Watch for entry"
+                vol = "Heavy volume" if rvol >= 2.0 else "Above-avg volume" if rvol >= 1.5 else "Normal volume"
+                near = "at EMA21" if abs(close - ema21) / ema21 < 0.01 else "near EMA21"
 
-                lines.append(f"{h['symbol']} — Uptrend {momentum}, {volume}. {rating}.")
+                stop   = round(close * 0.90, 2)   # 10% trail per strategy rules
+                target = round(close * 1.20, 2)   # 20% target
+
+                sc = _score(h)
+                rating = "STRONG BUY" if sc >= 9 else "BUY" if sc >= 6 else "WATCH"
+
+                lines.append(
+                    f"{h['symbol']} [{rating}]\n"
+                    f"  {pullback} {near} | {vol} ({rvol:.1f}x)\n"
+                    f"  Entry ~${close:.2f} | Stop ${stop:.2f} | Target ${target:.2f}"
+                )
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
