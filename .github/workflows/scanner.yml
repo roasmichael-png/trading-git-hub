@@ -8,6 +8,8 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     env:
       ALPACA_API_KEY:    ${{ secrets.ALPACA_API_KEY }}
