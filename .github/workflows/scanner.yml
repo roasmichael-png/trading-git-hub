@@ -58,4 +58,5 @@ jobs:
           git config user.name "GitHub Action"
           git add results/scanner_results.json
           git diff --staged --quiet || git commit -m "Scanner results $(date +%Y-%m-%d)"
+          git pull --rebase origin claude/setup-trading-bot-NISEK
           git push origin claude/setup-trading-bot-NISEK
