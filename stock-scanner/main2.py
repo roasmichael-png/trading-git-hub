@@ -18,11 +18,10 @@ def print_account():
 
 def run_loose_scan() -> list[dict]:
     stocks = list(dict.fromkeys(_all_stocks() + TOP_ETFS))
-    cryptos = CRYPTOS
-    print(f"[Scanner 2] Scanning {len(stocks)} stocks/ETFs + {len(cryptos)} cryptos...")
+    print(f"[Scanner 2] Scanning {len(stocks)} stocks/ETFs...")
 
     hits = []
-    for sym_list, fetch_fn in [(stocks, fetch_daily_bars), (cryptos, fetch_crypto_bars)]:
+    for sym_list, fetch_fn in [(stocks, fetch_daily_bars)]:
         for i in range(0, len(sym_list), 50):
             batch = sym_list[i:i + 50]
             try:

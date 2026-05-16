@@ -288,7 +288,5 @@ def run_scan() -> list[dict]:
     etfs   = list(dict.fromkeys(TOP_ETFS))
     all_stocks_etfs = list(dict.fromkeys(stocks + etfs))
 
-    print(f"Scanning {len(all_stocks_etfs)} stocks/ETFs + {len(CRYPTOS)} cryptos...")
-    hits  = _scan_symbols(all_stocks_etfs, fetch_daily_bars)
-    hits += _scan_symbols(CRYPTOS, fetch_crypto_bars)
-    return hits
+    print(f"Scanning {len(all_stocks_etfs)} stocks/ETFs...")
+    return _scan_symbols(all_stocks_etfs, fetch_daily_bars)

@@ -1,22 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
 
-const SCANNER = [
-  { ticker: 'PWR',  name: 'Quanta Services' },
-  { ticker: 'IESC', name: 'IES Holdings' },
-  { ticker: 'POWL', name: 'Powell Industries' },
-  { ticker: 'ETN',  name: 'Eaton Corp' },
-  { ticker: 'MOD',  name: 'Modine Mfg' },
-  { ticker: 'CARR', name: 'Carrier Global' },
-  { ticker: 'MLI',  name: 'Mueller Industries' },
-  { ticker: 'BE',   name: 'Bloom Energy' },
-]
-
-const CRYPTO = [
-  { id: 'bitcoin',  ticker: 'BTC', name: 'Bitcoin' },
-  { id: 'ethereum', ticker: 'ETH', name: 'Ethereum' },
-  { id: 'solana',   ticker: 'SOL', name: 'Solana' },
-]
-
 const EVENTS = [
   { date: 'May 16', title: 'La Jolla 5K', sub: 'Del Mar → La Jolla Cove', tag: 'meet women', tc: '#e879f9', tb: '#1a0a1a', url: 'https://lajollahalfmarathon.com/' },
   { date: 'May 21', title: 'F1 Canadian GP', sub: 'Montreal · from $300', tag: 'high-class', tc: '#818cf8', tb: '#0a0a2a', url: 'https://f1experiences.com/2026-canadian-grand-prix' },
@@ -31,11 +14,6 @@ const BODY_ITEMS = [
   { id: 4, label: 'Energy log', sub: 'Track headaches tonight' },
   { id: 5, label: '2 interactions', sub: 'In person · apps · events' },
 ]
-
-const fmtP = (n) => n == null ? '—' : '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-const fmtC = (n) => n == null ? '' : (n > 0 ? '+' : '') + Number(n).toFixed(2) + '%'
-const sigColor = (n) => n == null ? '#555' : n > 0 ? '#4ade80' : '#f87171'
-const getSig = (n) => n == null ? { l: '—', bg: '#1a1a1e', c: '#555' } : n > 1.5 ? { l: 'Buy', bg: '#0a2a0f', c: '#4ade80' } : n > 0 ? { l: 'Watch', bg: '#2a1a00', c: '#fbbf24' } : { l: 'Wait', bg: '#1a1a1e', c: '#555' }
 
 async function callClaude(messages, useSearch = false) {
   const body = { model: 'claude-sonnet-4-6', max_tokens: 1200, messages }
@@ -52,8 +30,6 @@ async function callClaude(messages, useSearch = false) {
 
 export default function App() {
   const [tab, setTab] = useState('all')
-  const [prices, setPrices] = useState({})
-  const [crypto, setCrypto] = useState({})
   const [signals, setSignals] = useState([])
   const [checked, setChecked] = useState({})
   const [outfits, setOutfits] = useState([])
@@ -63,29 +39,6 @@ export default function App() {
   const [briefLoading, setBriefLoading] = useState(false)
   const [briefError, setBriefError] = useState('')
   const [updated, setUpdated] = useState('')
-
-  const fetchCrypto = useCallback(async () => {
-    try {
-      const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true')
-      if (!r.ok) return
-      const d = await r.json()
-      const map = {}
-      CRYPTO.forEach(c => { const e = d[c.id]; if (e) map[c.ticker] = { price: e.usd, change: e.usd_24h_change } })
-      setCrypto(map)
-    } catch {}
-  }, [])
-
-  const fetchStocks = useCallback(async () => {
-    try {
-      const syms = SCANNER.map(s => s.ticker).join(',')
-      const r = await fetch(`/api/stocks?symbols=${syms}`)
-      if (!r.ok) return
-      const d = await r.json()
-      const map = {}
-      ;(d.quoteResponse?.result || []).forEach(q => { map[q.symbol] = { price: q.regularMarketPrice, change: q.regularMarketChangePercent } })
-      setPrices(map)
-    } catch {}
-  }, [])
 
   const fetchSignals = useCallback(async () => {
     try {
@@ -99,9 +52,9 @@ export default function App() {
   }, [])
 
   const refresh = useCallback(async () => {
-    await Promise.all([fetchCrypto(), fetchStocks(), fetchSignals()])
+    await fetchSignals()
     setUpdated(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))
-  }, [fetchCrypto, fetchStocks, fetchSignals])
+  }, [fetchSignals])
 
   useEffect(() => { refresh() }, [refresh])
 
@@ -125,13 +78,8 @@ export default function App() {
     setBriefLoading(false)
   }
 
-  const buys = SCANNER.filter(s => prices[s.ticker]?.change > 1.5).length
   const done = Object.values(checked).filter(Boolean).length
-  const tabs = ['all', 'scanner', 'crypto', 'life os', 'body']
-  const show = (panels) => {
-    const map = { all: true, scanner: ['scanner', 'crypto'].includes(panels), crypto: panels === 'crypto', 'life os': ['events', 'outfits', 'brief'].includes(panels), body: panels === 'body' }
-    return map[tab] !== false && (tab === 'all' || map[tab])
-  }
+  const tabs = ['all', 'scanner', 'life os', 'body']
 
   const s = {
     os: { background: '#0d0d0f', borderRadius: 16, padding: 20, color: '#f0f0f0' },
@@ -164,12 +112,10 @@ export default function App() {
         ))}
       </div>
 
-      {(tab === 'all' || tab === 'scanner' || tab === 'crypto') && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginBottom: 14 }}>
+      {(tab === 'all' || tab === 'scanner') && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 8, marginBottom: 14 }}>
           {[
-            { val: buys || '—', lbl: 'Buy signals' },
-            { val: crypto['BTC']?.price ? '$' + Math.round(crypto['BTC'].price / 1000) + 'k' : '—', lbl: 'BTC' },
-            { val: crypto['ETH']?.price ? '$' + Math.round(crypto['ETH'].price).toLocaleString() : '—', lbl: 'ETH' },
+            { val: signals.length > 0 ? signals.length : '—', lbl: 'Signals today' },
             { val: '9d', lbl: 'To F1 Canada' },
           ].map((m, i) => (
             <div key={i} style={s.metric}>
@@ -209,27 +155,6 @@ export default function App() {
                   <div style={{ fontSize: 10, color: '#555' }}>{h.note}</div>
                   <div style={{ fontSize: 10, color: '#444' }}>
                     Entry ${h.entry?.toFixed(2)} · Stop ${h.stop?.toFixed(2)} · Target ${h.target?.toFixed(2)}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        )}
-
-        {(tab === 'all' || tab === 'scanner' || tab === 'crypto') && (
-          <div style={s.card}>
-            <div style={s.lbl}>🪙 Crypto</div>
-            {CRYPTO.map((c, i) => {
-              const d = crypto[c.ticker]
-              return (
-                <div key={c.ticker} style={{ ...s.row, borderBottom: i === CRYPTO.length - 1 ? 'none' : '0.5px solid #1a1a1e' }}>
-                  <div>
-                    <div style={{ fontSize: 12, fontWeight: 500, color: '#fff', fontFamily: 'DM Mono, monospace' }}>{c.ticker}</div>
-                    <div style={{ fontSize: 10, color: '#444', marginTop: 1 }}>{c.name}</div>
-                  </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: 12, fontWeight: 500, color: '#fff', fontFamily: 'DM Mono, monospace' }}>{fmtP(d?.price)}</div>
-                    <div style={{ fontSize: 10, color: sigColor(d?.change) }}>{fmtC(d?.change)}</div>
                   </div>
                 </div>
               )

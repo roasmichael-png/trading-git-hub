@@ -61,14 +61,12 @@ def run_trend_scan() -> list[dict]:
         print(f"⚠️  Market conditions weak: {reason} — only A+ setups shown")
 
     stocks = list(dict.fromkeys(_all_stocks() + [s for s in TOP_ETFS if s not in ("TLT", "HYG", "AGG", "BND")]))
-    cryptos = CRYPTOS
 
-    print(f"[Scanner 3] Scanning {len(stocks)} stocks/ETFs + {len(cryptos)} cryptos...")
+    print(f"[Scanner 3] Scanning {len(stocks)} stocks/ETFs...")
 
     hits = []
     for sym_list, fetch_fn, use_qqq in [
         (stocks, fetch_daily_bars, qqq_df),
-        (cryptos, fetch_crypto_bars, None),  # no QQQ RS for crypto
     ]:
         for i in range(0, len(sym_list), 50):
             batch = sym_list[i:i + 50]
