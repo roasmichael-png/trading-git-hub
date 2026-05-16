@@ -75,6 +75,12 @@ if __name__ == "__main__":
         else:
             lines = [f"Scanner 2 (Loose Reversal) - {today}", f"{len(hits)} setup(s)\n"]
             for h in hits:
-                lines.append(f"{h['symbol']} ${h['close']:.2f} | K={h['srsi_k']} D={h['srsi_d']} | MACD={h['macd']:.2f}")
+                k    = h["srsi_k"]
+                macd = h["macd"]
+                sig  = h["macd_signal"]
+                oversold = "Deeply oversold" if k < 20 else "Oversold"
+                momentum = "MACD crossing up" if macd > sig else "MACD turning up"
+                rating   = "Good setup" if k < 25 else "Watch for entry"
+                lines.append(f"{h['symbol']} — {oversold}, {momentum}. {rating}.")
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)

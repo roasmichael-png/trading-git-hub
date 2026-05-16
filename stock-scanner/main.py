@@ -14,15 +14,37 @@ def print_account():
     print(f"Buying power   : ${float(account.buying_power):,.2f}\n")
 
 
+def analyze(h: dict) -> str:
+    k = h["srsi_k"]
+    macd = h["macd"]
+    sig  = h["macd_signal"]
+
+    if k < 10:
+        oversold = "Extremely oversold"
+    elif k < 20:
+        oversold = "Deeply oversold"
+    else:
+        oversold = "Oversold"
+
+    momentum = "MACD crossing up" if macd > sig else "MACD turning up"
+
+    if k < 15:
+        rating = "Strong buy signal"
+    elif k < 20:
+        rating = "Good setup"
+    else:
+        rating = "Watch for entry"
+
+    return f"{oversold}, {momentum}. {rating}."
+
+
 def build_message(hits: list[dict]) -> str:
     today = date.today().strftime("%b %d")
     if not hits:
         return f"Scanner 1 (Tight Reversal) - {today}\n\nNo setups found."
     lines = [f"Scanner 1 (Tight Reversal) - {today}", f"{len(hits)} setup(s)\n"]
     for h in hits:
-        lines.append(
-            f"{h['symbol']} ${h['close']:.2f} | K={h['srsi_k']} D={h['srsi_d']} | MACD={h['macd']:.2f}"
-        )
+        lines.append(f"{h['symbol']} — {analyze(h)}")
     return "\n".join(lines)
 
 

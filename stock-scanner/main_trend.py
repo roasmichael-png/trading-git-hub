@@ -128,6 +128,26 @@ if __name__ == "__main__":
         else:
             lines = [f"Scanner 3 (Trend Pullback) - {today}", f"{len(hits)} setup(s)\n"]
             for h in hits:
-                lines.append(f"{h['symbol']} ${h['close']:.2f} | RSI={h['rsi']} RVOL={h['rvol']}x")
+                rsi  = h["rsi"]
+                rvol = h["rvol"]
+                k    = h["srsi_k"]
+
+                if k < 20:
+                    momentum = "deeply oversold pullback"
+                elif rsi < 45:
+                    momentum = "clean RSI reset"
+                else:
+                    momentum = "controlled pullback"
+
+                volume = "heavy volume" if rvol >= 2.0 else "above-avg volume" if rvol >= 1.5 else "mild volume"
+
+                if k < 20 and rvol >= 1.5:
+                    rating = "Strong buy signal"
+                elif k < 30:
+                    rating = "Good setup"
+                else:
+                    rating = "Watch for entry"
+
+                lines.append(f"{h['symbol']} — Uptrend {momentum}, {volume}. {rating}.")
             msg = "\n".join(lines)
         send_telegram(config.TELEGRAM_TOKEN, config.TELEGRAM_CHAT_ID, msg)
