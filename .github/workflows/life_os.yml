@@ -28,4 +28,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python life_os_brief.py
+        run: |
+          export ANTHROPIC_API_KEY=$(echo -n "$ANTHROPIC_API_KEY" | tr -d '[:space:]')
+          export TELEGRAM_BOT_TOKEN=$(echo -n "$TELEGRAM_BOT_TOKEN" | tr -d '[:space:]')
+          export TELEGRAM_CHAT_ID=$(echo -n "$TELEGRAM_CHAT_ID" | tr -d '[:space:]')
+          python life_os_brief.py
