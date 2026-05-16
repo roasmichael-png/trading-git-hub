@@ -4,9 +4,9 @@ import os
 import time
 from datetime import date
 from scanner.client import get_client
-from scanner.data import fetch_daily_bars, fetch_crypto_bars
+from scanner.data import fetch_daily_bars
 from scanner.indicators_trend import add_indicators, add_weekly, check_trend_signals
-from scanner.scan import _all_stocks, TOP_ETFS, CRYPTOS
+from scanner.scan import _all_stocks, TOP_ETFS
 from scanner.telegram import send_telegram
 import config
 
