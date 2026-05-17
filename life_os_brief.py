@@ -1,4 +1,5 @@
 import os
+import time
 import urllib.request
 import urllib.parse
 import anthropic
@@ -56,18 +57,9 @@ Add these two sections at the very end using this exact format:
 · Goddaughter: <a href="[product URL]">[Gift name]</a>
 · Friend: <a href="[product URL]">[Gift name]</a>"""
 
-SYSTEM_PROMPT = """You are a world-class men's style curator and personal lifestyle assistant for a man in San Diego, CA.
+SYSTEM_PROMPT = """Men's lifestyle assistant for a man in San Diego. Old money style: Ralph Lauren, J.Crew, Todd Snyder, Zara Man, Uniqlo. Think Beckham, Gosling. Events north of La Jolla only. Output HTML anchor tags only — <a href="URL">Name</a>. No markdown, no asterisks, no prices, no descriptions.
 
-Style DNA: old money, coastal California, clean and masculine. Think how David Beckham, Ryan Gosling, and Brunello Cucinelli dress — effortless, quality fabrics, perfect fit.
-Approved brands: Ralph Lauren, Polo RL, J.Crew, Todd Snyder, Zara Man, Uniqlo.
-Avoid: streetwear, hoodies, sneaker culture, anything loud or branded across the chest.
-
-His goals: meet high quality women, build elite network (entrepreneurs, founders, builders), live a peak life.
-Geography: events north of La Jolla only — La Jolla, Del Mar, Encinitas, Solana Beach, Rancho Santa Fe.
-
-Think about what the best-dressed men are wearing THIS season. Search current Pinterest trends, GQ, and brand new arrivals. Prioritize: linen shirts, tailored blazers, quality chinos, loafers, Oxford shirts, swim trunks in season.
-
-Generate a daily brief in exactly this format using plain text (no markdown, no asterisks):
+Format:
 
 Stay lonely and a slave forever… or become the man who lives his dream life with his wife.
 
@@ -82,26 +74,21 @@ Women — Go to an event at 5pm.
 ──────────────
 
 👔 OUTFITS TO COP
-
-<a href="[direct buy URL]">[Short item name]</a>
-<a href="[direct buy URL]">[Short item name]</a>
-<a href="[direct buy URL]">[Short item name]</a>
+<a href="URL">Item name</a>
+<a href="URL">Item name</a>
+<a href="URL">Item name</a>
 
 ──────────────
 
 🏃 EVENTS TO MEET WOMEN
-
-<a href="[direct URL]">[Short event name]</a>
-<a href="[direct URL]">[Short event name]</a>
+<a href="URL">Event name</a>
+<a href="URL">Event name</a>
 
 ──────────────
 
 🏎️ EXPERIENCES & NETWORK
-
-<a href="[direct URL]">[Short event name]</a>
-<a href="[direct URL]">[Short event name]</a>
-
-Keep it tight. Real links only. Short and direct. No descriptions, no fluff, no prices. Output valid HTML anchor tags exactly as shown."""
+<a href="URL">Event name</a>
+<a href="URL">Event name</a>"""
 
 _base_prompt = f"""Today is {_now.strftime('%A, %B %d, %Y')}.
 
@@ -120,18 +107,26 @@ def get_brief() -> str:
         api_key=os.environ["ANTHROPIC_API_KEY"].strip(),
         default_headers={"anthropic-beta": "web-search-2025-03-05"},
     )
-    response = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=1500,
-        system=SYSTEM_PROMPT,
-        tools=[{"type": "web_search_20250305", "name": "web_search"}],
-        messages=[{"role": "user", "content": USER_PROMPT}],
-    )
-    text = ""
-    for block in response.content:
-        if hasattr(block, "text"):
-            text += block.text
-    return text.strip()
+    for attempt in range(3):
+        try:
+            response = client.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=1500,
+                system=SYSTEM_PROMPT,
+                tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                messages=[{"role": "user", "content": USER_PROMPT}],
+            )
+            text = ""
+            for block in response.content:
+                if hasattr(block, "text"):
+                    text += block.text
+            return text.strip()
+        except anthropic.RateLimitError:
+            if attempt < 2:
+                print(f"Rate limit hit, waiting 60s (attempt {attempt+1}/3)...")
+                time.sleep(60)
+            else:
+                raise
 
 
 def send_telegram(message: str) -> None:
