@@ -2,7 +2,7 @@ name: Daily Stock Scanner
 
 on:
   schedule:
-    - cron: '0 14 * * 1-5'  # 10:00 AM EDT / 9:00 AM EST weekdays
+    - cron: '0 14 * * *'  # 10:00 AM EDT / 9:00 AM EST daily
   workflow_dispatch:          # allow manual runs from GitHub
 
 jobs:
