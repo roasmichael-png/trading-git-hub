@@ -202,12 +202,60 @@ Be bold. Be specific. This is the most important section.
     for block in response.content:
         if hasattr(block, "text"):
             text += block.text
-    return text.strip()
+    return format_report(text.strip())
+
+
+def format_report(text: str) -> str:
+    """Enforce consistent spacing so Telegram renders cleanly."""
+    import re
+    lines = text.splitlines()
+    out = []
+    for line in lines:
+        stripped = line.strip()
+        # Section headers get extra breathing room
+        if stripped.startswith("━━━") or stripped.startswith("🌎"):
+            if out and out[-1] != "":
+                out.append("")
+            out.append(stripped)
+            out.append("")
+        # Key-value lines (e.g. "SPY: ...") get a blank line after
+        elif re.match(r'^[A-Z][A-Za-z /]+:', stripped) and stripped:
+            out.append(stripped)
+            out.append("")
+        # Emoji bullets stay as-is with spacing
+        elif stripped.startswith(("🔮", "WHERE", "WHAT I AM", "THE BIGGEST", "MY CONVICTION")):
+            if out and out[-1] != "":
+                out.append("")
+            out.append(stripped)
+            out.append("")
+        elif stripped:
+            out.append(stripped)
+        else:
+            # Collapse multiple blank lines into one
+            if out and out[-1] != "":
+                out.append("")
+    # Remove leading/trailing blank lines
+    while out and out[0] == "":
+        out.pop(0)
+    while out and out[-1] == "":
+        out.pop()
+    return "\n".join(out)
 
 
 def send_telegram(message: str) -> None:
     max_len = 4000
-    chunks = [message[i:i+max_len] for i in range(0, len(message), max_len)]
+    # Split cleanly on blank lines so we don't cut mid-section
+    chunks = []
+    current = ""
+    for line in message.splitlines(keepends=True):
+        if len(current) + len(line) > max_len:
+            chunks.append(current.strip())
+            current = line
+        else:
+            current += line
+    if current.strip():
+        chunks.append(current.strip())
+
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     for chunk in chunks:
         data = urllib.parse.urlencode({
