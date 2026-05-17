@@ -97,14 +97,35 @@ Search {leaders_str} — only include those with news this week.
 
 ━━━ TODAY'S TRADES
 For each scanner hit: {hits_str}
-[SYMBOL] [RATING] — [one line news] — Verdict: BUY/WAIT/SKIP
+Search news and insider filings for each. Format exactly:
 
-━━━ CLAUDE'S CALL
-Buy: [top 2-3 sectors or stocks, 5 words each]
-Avoid: [1-2 things, 5 words each]
-Hidden opportunity: [max 10 words]
-Top risk: [max 8 words]
-Conviction pick this week: [SYMBOL] — [max 8 words why]"""
+[SYMBOL] — $[current price] — [RATING]
+Why: [one line — news or catalyst]
+Insider: [CEO/CFO bought X shares DATE — or None]
+Entry: $[price] | Stop: $[price] | Target: $[price]
+Action: BUY NOW / WAIT FOR DIP / SKIP — [one line reason]
+
+━━━ CLAUDE'S CONVICTION CALL
+Think like a fund manager allocating $10M today. Be specific and bold.
+
+TOP BUYS RIGHT NOW:
+1. [SYMBOL or SECTOR] — $[price if stock] — [why in max 10 words]
+2. [SYMBOL or SECTOR] — $[price if stock] — [why in max 10 words]
+3. [SYMBOL or SECTOR] — $[price if stock] — [why in max 10 words]
+
+AVOID:
+- [what and why in max 8 words]
+- [what and why in max 8 words]
+
+HIDDEN OPPORTUNITY (6-18 months):
+[SYMBOL or SECTOR] — [max 12 words — what most people are missing]
+
+BIGGEST RISK RIGHT NOW:
+[max 10 words — the one thing that breaks everything]
+
+CONVICTION PICK OF THE WEEK:
+[SYMBOL] — Entry $[price] — Target $[price] — Stop $[price]
+[2-3 sentences max on exactly why this is the best risk/reward right now]"""
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
