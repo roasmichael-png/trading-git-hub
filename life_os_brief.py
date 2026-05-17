@@ -34,25 +34,25 @@ Women — Go to an event at 5pm.
 
 👔 OUTFITS TO COP
 
-[Short item name] — [direct buy URL]
-[Short item name] — [direct buy URL]
-[Short item name] — [direct buy URL]
+<a href="[direct buy URL]">[Short item name]</a>
+<a href="[direct buy URL]">[Short item name]</a>
+<a href="[direct buy URL]">[Short item name]</a>
 
 ──────────────
 
 🏃 EVENTS TO MEET WOMEN
 
-[Short event name] — [direct URL]
-[Short event name] — [direct URL]
+<a href="[direct URL]">[Short event name]</a>
+<a href="[direct URL]">[Short event name]</a>
 
 ──────────────
 
 🏎️ EXPERIENCES
 
-[Short event name] — [direct URL]
-[Short event name] — [direct URL]
+<a href="[direct URL]">[Short event name]</a>
+<a href="[direct URL]">[Short event name]</a>
 
-Keep it tight. Real links only. Short and direct. No descriptions, no fluff, no prices."""
+Keep it tight. Real links only. Short and direct. No descriptions, no fluff, no prices. Output valid HTML anchor tags exactly as shown."""
 
 USER_PROMPT = f"""Today is {datetime.now().strftime('%A, %B %d, %Y')}.
 
@@ -61,7 +61,7 @@ Search for:
 2. 2 upcoming fitness events or races in La Jolla, Del Mar, or Encinitas in the next 14 days — 5Ks, run clubs, beach events, yoga. Real registration links.
 3. 2 high-class experiences — F1, Monterey Car Week, boxing fight night, yacht show, charity gala, mastermind. Real ticket links.
 
-Format: short name — link. Nothing else."""
+Format each item as an HTML anchor tag: <a href="URL">Short name</a>. Nothing else."""
 
 
 def get_brief() -> str:
@@ -85,7 +85,11 @@ def get_brief() -> str:
 
 def send_telegram(message: str) -> None:
     url  = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    data = urllib.parse.urlencode({"chat_id": TELEGRAM_CHAT_ID, "text": message}).encode()
+    data = urllib.parse.urlencode({
+        "chat_id":    TELEGRAM_CHAT_ID,
+        "text":       message,
+        "parse_mode": "HTML",
+    }).encode()
     req  = urllib.request.Request(url, data=data)
     urllib.request.urlopen(req, timeout=30)
     print("Sent to Telegram successfully.")
