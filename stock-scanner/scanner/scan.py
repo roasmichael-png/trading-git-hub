@@ -8,11 +8,16 @@ BATCH_SIZE = 50
 
 SECTORS = {
     "🤖 AI": [
+        # AI infrastructure — high conviction plays
+        "NBIS", "APLD", "TSM", "MU",
+        # AI software & platforms
         "NVDA", "PLTR", "AI", "SOUN", "BBAI", "APP", "PATH", "SYM",
         "SNOW", "DDOG", "MDB", "GTLB", "CFLT", "NET",
         "NOW", "CRM", "WDAY", "TEAM", "DUOL", "BILL", "TOST",
-        "IONQ", "QBTS", "RGTI", "QUBT",  # quantum compute
-        "TSM", "ARM", "SMCI", "ACMR",
+        # Quantum compute
+        "IONQ", "QBTS", "RGTI", "QUBT",
+        # Chips
+        "ARM", "SMCI", "ACMR",
     ],
 
     "💻 Tech": [
