@@ -20,6 +20,18 @@ Think about what the best-dressed men are wearing THIS season. Search current Pi
 
 Generate a daily brief in exactly this format using plain text (no markdown, no asterisks):
 
+Stay lonely and a slave forever… or become the man who lives his dream life with his wife.
+
+──────────────
+
+🎯 TODAY'S NON-NEGOTIABLES
+
+Elite Shape — Hit macros. Progressive overload. Cardio.
+Business — Build the asset. Ad, lander, offer, email.
+Women — Go to an event at 5pm.
+
+──────────────
+
 👔 OUTFITS TO COP
 
 [Short item name] — [direct buy URL]
