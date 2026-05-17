@@ -68,6 +68,26 @@ SECTORS = {
         "V", "MA", "AXP", "SPGI", "MCO", "ICE", "CME",
         "SCHW", "C", "WFC",
     ],
+
+    "🏗️ Power & Grid": [
+        # Your core power/grid plays
+        "FIX", "IESC", "PWR", "POWL", "ETN", "MOD", "CARR",
+        "MLI", "BDC", "BE",
+        # Additional industrial/grid
+        "EMR", "AME", "ROK", "IR", "PH", "GNRC", "TRMB",
+    ],
+
+    "🥇 Metals & Commodities": [
+        # Gold miners & ETFs
+        "NEM", "AEM", "GOLD", "KGC", "AGI", "WPM", "RGLD",
+        # Silver
+        "AG", "PAAS", "MAG", "CDE",
+        # Copper
+        "FCX", "SCCO", "TECK", "HBM",
+        # Broad metals ETFs
+        "GLD", "IAU", "SLV", "COPX", "GDX", "GDXJ", "SIL",
+        "REMX", "LIT",
+    ],
 }
 
 # Top ETFs to scan alongside individual stocks

@@ -165,8 +165,9 @@ if __name__ == "__main__":
                 sc = _score(h)
                 rating = "STRONG BUY" if sc >= 9 else "BUY" if sc >= 6 else "WATCH"
 
+                tv = f"https://www.tradingview.com/chart/?symbol={h['symbol']}"
                 lines.append(
-                    f"{h['symbol']} [{rating}]\n"
+                    f"{h['symbol']} [{rating}] — {tv}\n"
                     f"  {pullback} {near} | {vol} ({rvol:.1f}x)\n"
                     f"  Entry ~${close:.2f} | Stop ${stop:.2f} | Target ${target:.2f}"
                 )
