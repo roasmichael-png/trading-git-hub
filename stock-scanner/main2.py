@@ -104,9 +104,9 @@ if __name__ == "__main__":
                     target = round(close * 1.18, 2)
                     sc = _score(h)
                     rating = "STRONG BUY" if sc >= 7 else "BUY" if sc >= 4 else "WATCH"
-                    tv = f"https://www.tradingview.com/chart/?symbol={h['symbol']}"
+                    tv = f'<a href="https://www.tradingview.com/chart/?symbol={h["symbol"]}">Chart</a>'
                     lines.append(
-                        f"{h['symbol']} [{rating}] — {tv}\n"
+                        f"{h['symbol']} [{rating}] {tv}\n"
                         f"  {strength}, {momentum}{vol_note}\n"
                         f"  Entry ~${close:.2f} | Stop ${stop:.2f} | Target ${target:.2f}"
                     )

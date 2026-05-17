@@ -55,9 +55,9 @@ def format_hit(h: dict) -> str:
     elif sc >= 5: rating = "BUY"
     else:          rating = "WATCH"
 
-    tv = f"https://www.tradingview.com/chart/?symbol={h['symbol']}"
+    tv = f'<a href="https://www.tradingview.com/chart/?symbol={h["symbol"]}">Chart</a>'
     return (
-        f"{h['symbol']} [{rating}] — {tv}\n"
+        f"{h['symbol']} [{rating}] {tv}\n"
         f"  {strength}, {momentum}{vol_note}\n"
         f"  Entry ~${entry:.2f} | Stop ${stop:.2f} | Target ${target:.2f}"
     )
