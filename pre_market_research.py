@@ -49,99 +49,152 @@ def build_report(hits: list[dict]) -> str:
     leaders_str = ", ".join(THOUGHT_LEADERS)
     hits_str = ", ".join(symbols) if symbols else "No scanner hits today — still run all sections"
 
-    prompt = f"""Today is {datetime.now().strftime('%A, %B %d, %Y')}. Pre-market. You are a macro strategist, intelligence analyst, and capital allocator.
+    prompt = f"""Today is {datetime.now().strftime('%A, %B %d, %Y')}. Pre-market. You are a world-class macro strategist, intelligence analyst, and capital allocator with 30 years of experience managing billions.
 
 Scanner hits from yesterday to research: {hits_str}
 
-Search the web thoroughly and produce a GLOBAL INTELLIGENCE REPORT with exactly these 6 sections. Keep every line short — one line max per item. Use HTML anchor tags for any links. No markdown, no asterisks, plain text only.
+Search the web thoroughly. Produce a GLOBAL INTELLIGENCE REPORT with exactly these 7 sections. Use blank lines between every item for readability. No markdown, no asterisks, plain text only. Use HTML anchor tags for any links.
 
-──────────────────────────────────────
-🌎 GLOBAL INTELLIGENCE REPORT — {datetime.now().strftime('%b %d, %Y')}
-──────────────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌎 GLOBAL INTELLIGENCE REPORT
+{datetime.now().strftime('%A, %B %d, %Y')}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-SECTION 1 — MARKET SETUP
-Search current pre-market futures and overnight levels.
 
-SPY: [pre-market price and % change]
-QQQ: [pre-market price and % change]
-BTC: [current price and % change]
-Futures: [S&P and Nasdaq futures direction]
-VIX: [level — low/normal/elevated/fear]
-Strongest sector today: [sector name and why]
-Weakest sector today: [sector name and why]
-Unusual options: [any large unusual options activity spotted today]
+━━━ SECTION 1 — MARKET SETUP ━━━
 
-──────────────────────────────────────
+Search current pre-market futures and overnight data.
 
-SECTION 2 — MACRO THREATS
-Search today's biggest macro risks globally.
+SPY: [price] ([%] pre-market)
 
-Wars/Geopolitics: [one line on biggest active conflict or tension affecting markets]
-Oil: [price and what's driving it]
-China/Taiwan: [any tension, trade, or policy update]
-Fed/Rates: [current stance, any speeches or signals this week]
-Inflation: [latest CPI or PCE reading and direction]
-Supply Chain: [any disruption worth watching]
-Wild card: [one macro risk most people are ignoring right now]
+QQQ: [price] ([%] pre-market)
 
-──────────────────────────────────────
+BTC: [price] ([%])
 
-SECTION 3 — SMART MONEY
-Search SEC Form 4 filings, congressional trades, hedge fund moves.
+Futures: [S&P and Nasdaq direction]
 
-Insider buys this week: [Executive — Company — $amount — date]
-Insider buys this week: [Executive — Company — $amount — date]
-Congress trades: [Senator/Rep — stock bought/sold — this week]
-Hedge fund move: [fund name — position change — this week]
-Analyst upgrade: [Stock — firm — new price target]
-Analyst upgrade: [Stock — firm — new price target]
-unusual_whales signal: [any notable options or congressional alert today]
+VIX: [level] — [low / normal / elevated / fear]
 
-For scanner hits {hits_str} — check each for recent CEO/CFO Form 4 buys.
+Strongest Sector: [name — one line why]
 
-──────────────────────────────────────
+Weakest Sector: [name — one line why]
 
-SECTION 4 — FUTURE TRENDS
-Search what is accelerating RIGHT NOW in each sector.
+Unusual Options: [any notable sweep or unusual activity]
 
-AI: [biggest AI development or shift this week]
-Robotics: [key move — company, product, or deal]
-Biotech: [biggest FDA, trial, or breakthrough news]
-Defense: [contract, conflict, or budget news driving stocks]
-Nuclear: [SMR, uranium, or energy policy update]
-Crypto: [BTC/ETH trend + any regulatory or institutional move]
-Energy: [oil, solar, or grid infrastructure news]
-Space: [launch, contract, or milestone this week]
 
-──────────────────────────────────────
+━━━ SECTION 2 — MACRO THREATS ━━━
 
-SECTION 5 — THOUGHT LEADERS
-Search what each of these people said or did in the last 7 days: {leaders_str}
+Search today's biggest global risks.
 
-For each one that has something relevant and actionable, write:
-[Name]: [one line — what they said, did, or invested in]
+Wars/Geopolitics: [one line]
 
-Then end with:
-🔮 WHAT THE SMARTEST PEOPLE ARE SEEING RIGHT NOW:
-[2-3 sentence synthesis — what is the consensus view among the sharpest minds globally? What are they positioning for? What risk are they all quietly watching?]
+Oil: [price and driver]
 
-──────────────────────────────────────
+China/Taiwan: [latest update]
 
-SECTION 6 — TODAY'S TRADES
-For each scanner hit, give a fast verdict.
+Fed/Rates: [current stance and this week's signals]
+
+Inflation: [latest reading and direction]
+
+Supply Chain: [any active disruption]
+
+Wild Card: [the one risk most people are ignoring]
+
+
+━━━ SECTION 3 — SMART MONEY ━━━
+
+Search SEC Form 4 filings, congressional trades, hedge fund moves. Also check each scanner hit for CEO/CFO insider buys.
+
+Insider Buy: [Executive — Company — $amount — date]
+
+Insider Buy: [Executive — Company — $amount — date]
+
+Congress Trade: [Senator/Rep — stock — bought or sold — date]
+
+Hedge Fund: [fund — position change this week]
+
+Analyst Upgrade: [Stock — firm — old PT → new PT]
+
+Analyst Upgrade: [Stock — firm — old PT → new PT]
+
+unusual_whales: [notable signal today]
+
+
+━━━ SECTION 4 — FUTURE TRENDS ━━━
+
+Search what is accelerating right now in each sector.
+
+AI: [biggest shift this week]
+
+Robotics: [key company, product, or deal]
+
+Biotech: [FDA, trial, or breakthrough]
+
+Defense: [contract, conflict, or budget news]
+
+Nuclear: [SMR, uranium, or policy update]
+
+Crypto: [trend + institutional or regulatory move]
+
+Energy: [oil, solar, or grid news]
+
+Space: [launch, contract, or milestone]
+
+
+━━━ SECTION 5 — THOUGHT LEADERS ━━━
+
+Search what each of these people said, did, or invested in during the last 7 days: {leaders_str}
+
+Only include those with something relevant and actionable this week.
+
+[Name]: [one line — what they said or where they are putting money]
+
+[Name]: [one line]
+
+[Name]: [one line]
+
+🔮 CONSENSUS VIEW:
+[2-3 sentences — what are the sharpest minds globally positioning for right now? What risk are they all quietly watching?]
+
+
+━━━ SECTION 6 — TODAY'S TRADES ━━━
+
+For each scanner hit give a fast verdict.
 
 [SYMBOL] — [RATING] — [SECTOR]
 News: [one line]
 Insider: [bought X shares DATE — or None]
-Verdict: BUY / WAIT / SKIP and one line why
+Verdict: BUY / WAIT / SKIP — [one line reason]
 
-──────────────────────────────────────
 
-Keep it tight, factual, and actionable. You are writing for someone who wants to think like a capital allocator and intelligence analyst, not a day trader."""
+━━━ SECTION 7 — CLAUDE'S ANALYSIS ━━━
+
+This is your own independent world-class view — not a summary of others. Think like a top fund manager allocating $10M today.
+
+Based on everything above, give:
+
+WHERE I WOULD PUT MONEY RIGHT NOW:
+[3-5 specific sectors or stocks and exactly why — be direct and confident]
+
+WHAT I AM AVOIDING AND WHY:
+[2-3 things to stay away from with reasoning]
+
+THE BIGGEST OPPORTUNITY MOST PEOPLE ARE MISSING:
+[One contrarian or forward-looking thesis — think 6-18 months out]
+
+THE BIGGEST RISK TO THIS PORTFOLIO:
+[One honest macro or market risk that could break the thesis]
+
+MY CONVICTION CALL THIS WEEK:
+[One single highest-conviction idea — sector or stock — and why now]
+
+Be bold. Be specific. This is the most important section.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"""
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=4000,
+        max_tokens=5000,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": prompt}],
     )
