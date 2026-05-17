@@ -10,34 +10,41 @@ TELEGRAM_CHAT_ID   = os.environ["TELEGRAM_CHAT_ID"].strip()
 _now = datetime.now()
 _is_sunday = _now.weekday() == 6
 
-SUNDAY_BLOCK = """
+SUNDAY_BLOCK_TOP = """
 ──────────────
 
 📋 SUNDAY RESETS
 
+Meal prep
 <a href="https://www.livethelindley.com/floor-plans/">The Lindley — Studio ocean view</a>
 <a href="https://www.youtube.com/watch?v=BBz-Jyr23M4&t=796s">Guitar practice</a>
-<a href="https://www.ltfsd.com/">Pilot license — LTFSD</a>
+<a href="https://www.ltfsd.com/">Pilot license — LTFSD</a>"""
 
-Meal prep — proteins, rice, veggies for the week
+SUNDAY_SEARCH_PROMPT = """
 
-📸 Hinge photos this week:
-· Beach / outdoors candid
-· Business setting (laptop, coffee, building)
-· Travel or high-class venue
-· Fitness / body shot
+Also search for:
+4. 4 viral men's Instagram/Hinge photo ideas right now — search "men's instagram content ideas that attract women 2025", "husband material social media posts men". Give me specific shoot concepts that show I am worthy of being a husband: adventure, ambition, warmth, strength. One line each, very specific (e.g. "Golden hour solo hike shot from behind on trail").
+5. 4 world-class thoughtful gifts this week — one each for: a dad who loves Ferraris, a grandma who loves cooking, a 1-year-old goddaughter, a friend focused on business growth. Search "most thoughtful gifts 2025", "luxury gifts [category]". Find real specific products with purchase links.
 
-📱 Instagram content ideas:
-· Holding a dog at the park
-· Behind-the-scenes building something
-· Travel or car shot
-· Progress physique post
+Add these two sections at the very end using this exact format:
 
-🎁 Gift ideas to send this week:
-· Dad (Ferrari fan) — search "Ferrari fan gift" on <a href="https://www.amazon.com/s?k=ferrari+fan+gift+men">Amazon</a>
-· Grandma (loves cooking) — search <a href="https://www.amazon.com/s?k=luxury+cooking+gift+grandma">Amazon cooking gifts</a>
-· Goddaughter (1 yr old) — <a href="https://www.amazon.com/s?k=baby+girl+1+year+old+gift">Baby girl 1yr gifts</a>
-· Friends — <a href="https://www.amazon.com/s?k=business+self+improvement+gift+men">Business/growth gifts</a>"""
+──────────────
+
+📸 CONTENT TO SHOOT THIS WEEK
+
+· [Specific shoot idea]
+· [Specific shoot idea]
+· [Specific shoot idea]
+· [Specific shoot idea]
+
+──────────────
+
+🎁 GIFTS TO SEND THIS WEEK
+
+· Dad: <a href="[product URL]">[Gift name]</a>
+· Grandma: <a href="[product URL]">[Gift name]</a>
+· Goddaughter: <a href="[product URL]">[Gift name]</a>
+· Friend: <a href="[product URL]">[Gift name]</a>"""
 
 SYSTEM_PROMPT = """You are a world-class men's style curator and personal lifestyle assistant for a man in San Diego, CA.
 
@@ -86,14 +93,16 @@ Women — Go to an event at 5pm.
 
 Keep it tight. Real links only. Short and direct. No descriptions, no fluff, no prices. Output valid HTML anchor tags exactly as shown."""
 
-USER_PROMPT = f"""Today is {_now.strftime('%A, %B %d, %Y')}.
+_base_prompt = f"""Today is {_now.strftime('%A, %B %d, %Y')}.
 
 Search for:
 1. 3 specific men's clothing items trending right now — search GQ best dressed, Pinterest mens style, and new arrivals at Ralph Lauren, J.Crew, Todd Snyder, Zara Man, or Uniqlo. Pick what actually looks elite for the current season. Real product page links only.
 2. 2 upcoming fitness events or races in La Jolla, Del Mar, or Encinitas in the next 14 days — 5Ks, run clubs, beach events, yoga. Real registration links.
 3. 2 high-class experiences OR entrepreneur/founder networking events — F1, Monterey Car Week, boxing fight night, charity gala, ClickFunnels meetup, Shopify meetup, founder mastermind, YPO event, entrepreneur conference. Real ticket or registration links.
 
-Format each item as an HTML anchor tag: <a href="URL">Short name</a>. Nothing else."""
+Format outfits and events as HTML anchor tags: <a href="URL">Short name</a>. Nothing else."""
+
+USER_PROMPT = _base_prompt + (SUNDAY_SEARCH_PROMPT if _is_sunday else "")
 
 
 def get_brief() -> str:
@@ -131,6 +140,6 @@ if __name__ == "__main__":
     print("Generating Life OS brief...")
     brief = get_brief()
     if _is_sunday:
-        brief += SUNDAY_BLOCK
+        brief = SUNDAY_BLOCK_TOP + "\n" + brief
     print(brief)
     send_telegram(brief)
