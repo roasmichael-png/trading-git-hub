@@ -11,6 +11,15 @@ TELEGRAM_CHAT_ID   = os.environ["TELEGRAM_CHAT_ID"].strip()
 RESULTS_PATH = os.path.join(os.path.dirname(__file__), "results", "scanner_results.json")
 
 THOUGHT_LEADERS = [
+    # Billionaires / Builders
+    "Elon Musk", "Jeff Bezos", "Bill Gates", "Warren Buffett",
+    "Sam Altman", "Jensen Huang", "Peter Thiel", "Marc Andreessen",
+    "Naval Ravikant", "Larry Ellison",
+    # Tech CEOs
+    "Satya Nadella", "Lisa Su AMD", "Sundar Pichai", "Mark Zuckerberg",
+    # Macro / Politics
+    "Donald Trump", "Jerome Powell Fed", "Ray Dalio",
+    # Finance / Investing
     "Stan Druckenmiller", "Howard Marks", "Tom Lee Fundstrat",
     "Dan Ives Wedbush", "Michael Burry", "Paul Tudor Jones",
     "Cathie Wood ARK", "Mark Minervini", "unusual_whales",
@@ -63,11 +72,14 @@ Do the following:
    - Analyst upgrades, downgrades, or price target changes
    - Any upcoming earnings date
    - X/Twitter or StockTwits sentiment (bullish or bearish?)
+   - SEC Form 4 insider filings — has any CEO, CFO, or C-suite bought or sold shares in the last 30 days? Search "[SYMBOL] insider buying SEC Form 4 2025" or check openinsider.com
    - One sentence on why smart money might be moving
 
-2. Search what these thought leaders are currently saying about the market or any of these stocks: {leaders_str}. Pick the 2-3 most relevant and actionable quotes or views.
+2. Search what these world-class leaders are currently saying about the market, tech, AI, or any of these stocks: {leaders_str}. Pick the 3 most relevant and actionable. Include what they are personally investing in or building right now if known.
 
-3. Check the macro calendar — any Fed events, CPI, jobs report, or major earnings this week that could move markets?
+3. Check the macro calendar — any Fed events, CPI, jobs report, Trump policy moves, or major earnings this week that could move markets?
+
+4. Any recent significant insider buys across the broader market this week — CEOs or executives buying their OWN stock with personal money (this is a strong signal). Search "biggest insider buys this week 2025".
 
 Format the output like this (plain text, no markdown, use HTML only for links):
 
@@ -80,15 +92,23 @@ Format the output like this (plain text, no markdown, use HTML only for links):
 News: [one line]
 Analyst: [one line or "No change"]
 Earnings: [X days out or "N/A"]
+Insider: [CEO/CFO bought X shares on DATE — or "No recent filing"]
 Sentiment: [Bullish / Neutral / Bearish]
 Edge: [one line why this could move]
 
 [repeat for each symbol]
 
 ──────────────
-🧠 THOUGHT LEADERS
+🏦 INSIDER BUYS THIS WEEK
 
-[Name]: [one line on their current view]
+[Company] — [Executive title] bought $[amount] on [date]
+[Company] — [Executive title] bought $[amount] on [date]
+
+──────────────
+🧠 WORLD-CLASS VIEWS
+
+[Name]: [one line on their current view or what they are buying/building]
+[Name]: [one line]
 [Name]: [one line]
 
 ──────────────
@@ -100,7 +120,7 @@ Keep everything short. One line per field. This is a quick read before the marke
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=2000,
+        max_tokens=3000,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{"role": "user", "content": prompt}],
     )
