@@ -29,7 +29,7 @@ Generate a daily brief in exactly this format using plain text (no markdown, no 
 
 ──────────────
 
-🏎️ HIGH-CLASS EVENTS
+🏎️ EXPERIENCES
 
 [Short event name] — [direct URL]
 [Short event name] — [direct URL]
