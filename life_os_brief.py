@@ -18,7 +18,17 @@ SUNDAY_BLOCK_TOP = """
 Meal prep
 <a href="https://www.livethelindley.com/floor-plans/">The Lindley — Studio ocean view</a>
 <a href="https://www.youtube.com/watch?v=BBz-Jyr23M4&t=796s">Guitar practice</a>
-<a href="https://www.ltfsd.com/">Pilot license — LTFSD</a>"""
+<a href="https://www.ltfsd.com/">Pilot license — LTFSD</a>
+
+──────────────
+
+📓 JOURNAL (voice memo while walking)
+
+1. What's the one thing I need to stop doing?
+2. Where did I show up as the man I want to be this week?
+3. What would my future wife think of how I spent this week?
+4. What's the one business move that actually moves the needle?
+5. Who do I need to reach out to?"""
 
 SUNDAY_SEARCH_PROMPT = """
 
