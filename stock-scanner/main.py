@@ -68,8 +68,16 @@ def build_message(hits: list[dict]) -> str:
         return f"Scanner 1 (Tight Reversal) - {today}\n\nNo setups found."
     ranked = sorted(hits, key=score, reverse=True)
     lines  = [f"Scanner 1 (Tight Reversal) - {today}", f"{len(ranked)} setup(s)\n"]
+
+    # Group by sector
+    by_sector: dict[str, list] = {}
     for h in ranked:
-        lines.append(format_hit(h))
+        by_sector.setdefault(h.get("sector", "📊 Other"), []).append(h)
+
+    for sector, group in by_sector.items():
+        lines.append(f"\n{sector}")
+        for h in group:
+            lines.append(format_hit(h))
     return "\n".join(lines)
 
 
@@ -101,13 +109,14 @@ if __name__ == "__main__":
     for h in ranked:
         sc = score(h)
         results.append({
-            "symbol": h["symbol"],
-            "close":  h["close"],
-            "rating": "STRONG BUY" if sc >= 8 else "BUY" if sc >= 5 else "WATCH",
-            "note":   format_hit(h).split("\n")[1].strip(),
-            "entry":  h["close"],
-            "stop":   round(h["close"] * 0.93, 2),
-            "target": round(h["close"] * 1.18, 2),
+            "symbol":  h["symbol"],
+            "sector":  h.get("sector", "📊 Other"),
+            "close":   h["close"],
+            "rating":  "STRONG BUY" if sc >= 8 else "BUY" if sc >= 5 else "WATCH",
+            "note":    format_hit(h).split("\n")[1].strip(),
+            "entry":   h["close"],
+            "stop":    round(h["close"] * 0.93, 2),
+            "target":  round(h["close"] * 1.18, 2),
             "scanner": 1,
         })
     results_path = os.path.join(os.path.dirname(__file__), "..", "results", "scanner_results.json")
