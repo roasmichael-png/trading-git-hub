@@ -43,8 +43,10 @@ Women — Go to an event at 5pm.
 
 ──────────────"""
 
+STYLE_CONTEXT = """The man: San Diego, mid-30s, old money aesthetic, athletic build. Style icons: David Beckham, Ryan Gosling, Glen Powell. Budget: mid-to-high. Brands that fit: Ralph Lauren, J.Crew, Todd Snyder, Zara Man, Uniqlo premium line, Banana Republic, Billy Reid, Faherty, Vince, Club Monaco. NO streetwear, NO hoodies, NO sneaker culture. Think: linen shirts, tailored chinos, leather loafers, quality denim, blazers, polo shirts. Must look like money without trying."""
 
-def _call_claude(prompt: str, max_tokens: int = 800) -> str:
+
+def _call_claude(prompt: str, max_tokens: int = 1000) -> str:
     client = anthropic.Anthropic(
         api_key=os.environ["ANTHROPIC_API_KEY"].strip(),
         default_headers={"anthropic-beta": "web-search-2025-03-05"},
@@ -72,72 +74,117 @@ def _call_claude(prompt: str, max_tokens: int = 800) -> str:
 
 
 def get_outfits() -> str:
-    prompt = f"""Today is {_today}. San Diego men's style.
+    prompt = f"""Today is {_today}.
 
-Search GQ, Pinterest mens style, and new arrivals at Ralph Lauren, J.Crew, Todd Snyder, Zara Man, or Uniqlo. Find 3 specific clothing items trending right now for the current season. Old money style: think Beckham, Gosling.
+{STYLE_CONTEXT}
 
-Output ONLY this block, nothing else:
+Search RIGHT NOW for specific in-stock men's clothing items. Search these exact queries:
+- "Ralph Lauren new arrivals {_now.strftime('%B %Y')}"
+- "Todd Snyder men's new arrivals"
+- "J.Crew men's best sellers"
+- "Zara man new collection {_now.strftime('%Y')}"
+- "GQ best dressed men {_now.strftime('%B %Y')}"
+
+Find 3 SPECIFIC items that are:
+1. Actually available to buy today (real product pages, not articles)
+2. Season-appropriate for San Diego right now ({_now.strftime('%B')})
+3. Elevated and specific — not generic "white button-down" but "Ralph Lauren Slim Fit Linen Oxford in Coastal Blue"
+4. Linkable directly to the product page
+
+Output ONLY this block — no intro, no explanation:
 
 👔 OUTFITS TO COP
-<a href="[real product URL]">[Item name]</a>
-<a href="[real product URL]">[Item name]</a>
-<a href="[real product URL]">[Item name]</a>
 
-Real product page links only. No prices. No descriptions. HTML anchor tags only."""
-    return _call_claude(prompt, max_tokens=400)
+<a href="[direct product URL]">[Brand — Specific item name and color]</a>
+<a href="[direct product URL]">[Brand — Specific item name and color]</a>
+<a href="[direct product URL]">[Brand — Specific item name and color]</a>
+
+──────────────"""
+    return _call_claude(prompt, max_tokens=600)
 
 
 def get_events() -> str:
-    prompt = f"""Today is {_today}. San Diego, CA.
+    prompt = f"""Today is {_today}. Location: San Diego, CA (La Jolla, Del Mar, Little Italy, Gaslamp area).
 
-Search for:
-1. 3 upcoming events to meet high-class women in San Diego in the next 14 days — prioritize Tango's San Diego dance nights, upscale salsa/bachata socials, rooftop events, charity galas, La Jolla art openings, Del Mar wine events, beach yoga La Jolla. No low-end bars. Search "Tango's San Diego events", "upscale salsa San Diego", "La Jolla social events".
-2. 2 high-class experiences OR entrepreneur/founder networking events — F1, boxing fight night, charity gala, founder mastermind, YPO event, entrepreneur conference San Diego. Real ticket links.
+Search for REAL upcoming events happening in the next 14 days. Search these exact queries:
+- "Tango's San Diego upcoming events {_now.strftime('%B %Y')}"
+- "salsa dancing San Diego {_now.strftime('%B %Y')}"
+- "bachata social San Diego {_now.strftime('%B %Y')}"
+- "La Jolla art opening gala {_now.strftime('%B %Y')}"
+- "San Diego rooftop event {_now.strftime('%B %Y')}"
+- "Del Mar wine tasting {_now.strftime('%B %Y')}"
+- "San Diego charity gala {_now.strftime('%B %Y')}"
+- "entrepreneur networking San Diego {_now.strftime('%B %Y')}"
+- "YPO San Diego event"
+- "founder mastermind San Diego"
 
-Output ONLY these two blocks, nothing else:
+RULES:
+- Events must have a real URL to buy tickets or register
+- Events should attract high-quality, ambitious people (not college bars, not dive bars)
+- Dance events (salsa, bachata, tango) are TOP priority — sophisticated crowd, great for meeting women
+- Rooftop bars with events, wine tastings, art galas are great
+- Charity events, networking with executives/founders are great
+
+Output ONLY these two blocks — no intro, no explanation:
 
 🏃 EVENTS TO MEET WOMEN
-<a href="[real URL]">[Event name]</a>
-<a href="[real URL]">[Event name]</a>
-<a href="[real URL]">[Event name]</a>
+
+<a href="[real ticket/event URL]">[Specific event name — Day, Date]</a>
+<a href="[real ticket/event URL]">[Specific event name — Day, Date]</a>
+<a href="[real ticket/event URL]">[Specific event name — Day, Date]</a>
 
 ──────────────
 
 🏎️ EXPERIENCES & NETWORK
-<a href="[real URL]">[Event name]</a>
-<a href="[real URL]">[Event name]</a>
 
-HTML anchor tags only. Real links only. No descriptions."""
-    return _call_claude(prompt, max_tokens=400)
+<a href="[real URL]">[Specific event name — Day, Date]</a>
+<a href="[real URL]">[Specific event name — Day, Date]</a>
+
+──────────────"""
+    return _call_claude(prompt, max_tokens=700)
 
 
 def get_sunday_extras() -> str:
     prompt = f"""Today is {_today}.
 
-Search for:
-1. 4 viral men's Instagram/Hinge photo ideas right now — search "men's instagram content ideas that attract women 2025", "husband material social media posts men". Specific shoot concepts showing adventure, ambition, warmth, strength. One line each (e.g. "Golden hour solo hike shot from behind on trail").
-2. 4 thoughtful gifts — one each for: a dad who loves Ferraris, a grandma who loves cooking, a 1-year-old goddaughter, a friend focused on business growth. Search "most thoughtful gifts 2025". Real specific products with purchase links.
+{STYLE_CONTEXT}
 
-Output ONLY these two blocks:
+Search for:
+
+PART 1 — Photo ideas:
+Search "men's instagram content ideas 2025 attract women", "what photos make men look husband material instagram", "men hinge photo ideas that get matches 2025".
+Find 4 SPECIFIC shoot concepts — not generic. Think: exact location type, lighting, outfit, activity. The man is athletic, has old money style, based in San Diego. He surfs, hikes, dresses well, builds businesses.
+Examples of the specificity I want: "Golden hour on Torrey Pines trail, shot from behind, linen shirt, looking out at the ocean" or "Sitting at a marble cafe table reading WSJ, navy blazer, espresso in hand, shot candidly"
+
+PART 2 — Gifts:
+Search for specific thoughtful gifts for:
+- A dad who loves Ferraris (find a real luxury/experiential gift — Ferrari experience, artwork, high-end auto accessory)
+- A grandma who loves cooking (find a specific high-end kitchen item or experience — not generic "cookbook")
+- A 1-year-old goddaughter (find something meaningful, heirloom quality)
+- A friend laser-focused on business growth (find a specific book, tool, experience, or resource that actually moves the needle)
+
+Search "most thoughtful luxury gifts 2025", "best gifts for [category] 2025". Real products with real purchase links.
+
+Output ONLY:
 
 ──────────────
 
 📸 CONTENT TO SHOOT THIS WEEK
 
-· [Specific shoot idea]
-· [Specific shoot idea]
-· [Specific shoot idea]
-· [Specific shoot idea]
+· [Very specific shoot concept with location, lighting, outfit, activity]
+· [Very specific shoot concept with location, lighting, outfit, activity]
+· [Very specific shoot concept with location, lighting, outfit, activity]
+· [Very specific shoot concept with location, lighting, outfit, activity]
 
 ──────────────
 
 🎁 GIFTS TO SEND THIS WEEK
 
-· Dad: <a href="[product URL]">[Gift name]</a>
-· Grandma: <a href="[product URL]">[Gift name]</a>
-· Goddaughter: <a href="[product URL]">[Gift name]</a>
-· Friend: <a href="[product URL]">[Gift name]</a>"""
-    return _call_claude(prompt, max_tokens=500)
+· Dad: <a href="[product URL]">[Specific gift name]</a>
+· Grandma: <a href="[product URL]">[Specific gift name]</a>
+· Goddaughter: <a href="[product URL]">[Specific gift name]</a>
+· Friend: <a href="[product URL]">[Specific gift name]</a>"""
+    return _call_claude(prompt, max_tokens=800)
 
 
 def send_telegram(message: str) -> None:
@@ -166,29 +213,31 @@ def send_telegram(message: str) -> None:
 
 
 if __name__ == "__main__":
+    parts = []
+
+    if _is_sunday:
+        parts.append(SUNDAY_BLOCK_TOP + "\n\n──────────────")
+
+    parts.append(HEADER)
+
     print("Generating outfits...")
     outfits = get_outfits()
+    parts.append(outfits)
 
-    print("Waiting 65s before next API call to avoid rate limit...")
+    print("Waiting 65s before events call...")
     time.sleep(65)
 
     print("Generating events...")
     events = get_events()
+    parts.append(events)
 
-    sunday_extras = ""
     if _is_sunday:
         print("Waiting 65s before Sunday extras...")
         time.sleep(65)
         print("Generating Sunday extras...")
         sunday_extras = get_sunday_extras()
+        parts.append(sunday_extras)
 
-    # Assemble brief
-    parts = [HEADER, outfits, "\n──────────────\n", events]
-    if _is_sunday:
-        parts.insert(0, SUNDAY_BLOCK_TOP + "\n\n──────────────\n")
-        if sunday_extras:
-            parts.append("\n" + sunday_extras)
-
-    brief = "\n".join(parts)
+    brief = "\n\n".join(parts)
     print(brief)
     send_telegram(brief)
