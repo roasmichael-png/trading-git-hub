@@ -83,6 +83,7 @@ Women — Go to an event at 5pm.
 🏃 EVENTS TO MEET WOMEN
 <a href="URL">Event name</a>
 <a href="URL">Event name</a>
+<a href="URL">Event name</a>
 
 ──────────────
 
@@ -94,7 +95,7 @@ _base_prompt = f"""Today is {_now.strftime('%A, %B %d, %Y')}.
 
 Search for:
 1. 3 specific men's clothing items trending right now — search GQ best dressed, Pinterest mens style, and new arrivals at Ralph Lauren, J.Crew, Todd Snyder, Zara Man, or Uniqlo. Pick what actually looks elite for the current season. Real product page links only.
-2. 2 upcoming fitness events or races in La Jolla, Del Mar, or Encinitas in the next 14 days — 5Ks, run clubs, beach events, yoga. Real registration links.
+2. 3 upcoming events to meet women in San Diego in the next 14 days — mix of: salsa/latin dancing nights, bachata classes, run clubs, beach yoga, 5Ks, social fitness events. Prioritize dance events — search "salsa dancing San Diego", "bachata San Diego", "latin dance night San Diego". Real links only.
 3. 2 high-class experiences OR entrepreneur/founder networking events — F1, Monterey Car Week, boxing fight night, charity gala, ClickFunnels meetup, Shopify meetup, founder mastermind, YPO event, entrepreneur conference. Real ticket or registration links.
 
 Format outfits and events as HTML anchor tags: <a href="URL">Short name</a>. Nothing else."""
