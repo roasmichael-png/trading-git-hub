@@ -10,9 +10,9 @@ TELEGRAM_CHAT_ID   = os.environ["TELEGRAM_CHAT_ID"].strip()
 
 _now = datetime.now()
 _is_sunday = _now.weekday() == 6
+_today = _now.strftime("%A, %B %d, %Y")
 
-SUNDAY_BLOCK_TOP = """
-──────────────
+SUNDAY_BLOCK_TOP = """──────────────
 
 📋 SUNDAY RESETS
 
@@ -31,13 +31,94 @@ Meal prep
 4. What's the one business move that actually moves the needle?
 5. Who do I need to reach out to?"""
 
-SUNDAY_SEARCH_PROMPT = """
+HEADER = """Stay lonely and a slave forever… or become the man who lives his dream life with his wife.
 
-Also search for:
-4. 4 viral men's Instagram/Hinge photo ideas right now — search "men's instagram content ideas that attract women 2025", "husband material social media posts men". Give me specific shoot concepts that show I am worthy of being a husband: adventure, ambition, warmth, strength. One line each, very specific (e.g. "Golden hour solo hike shot from behind on trail").
-5. 4 world-class thoughtful gifts this week — one each for: a dad who loves Ferraris, a grandma who loves cooking, a 1-year-old goddaughter, a friend focused on business growth. Search "most thoughtful gifts 2025", "luxury gifts [category]". Find real specific products with purchase links.
+──────────────
 
-Add these two sections at the very end using this exact format:
+🎯 TODAY'S NON-NEGOTIABLES
+
+Elite Shape — Hit macros. Progressive overload. Cardio.
+Business — Build the asset. Ad, lander, offer, email.
+Women — Go to an event at 5pm.
+
+──────────────"""
+
+
+def _call_claude(prompt: str, max_tokens: int = 800) -> str:
+    client = anthropic.Anthropic(
+        api_key=os.environ["ANTHROPIC_API_KEY"].strip(),
+        default_headers={"anthropic-beta": "web-search-2025-03-05"},
+    )
+    for attempt in range(3):
+        try:
+            response = client.messages.create(
+                model="claude-sonnet-4-6",
+                max_tokens=max_tokens,
+                tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                messages=[{"role": "user", "content": prompt}],
+            )
+            text = ""
+            for block in response.content:
+                if hasattr(block, "text"):
+                    text += block.text
+            return text.strip()
+        except anthropic.RateLimitError:
+            if attempt < 2:
+                wait = 65 * (attempt + 1)
+                print(f"Rate limit hit, waiting {wait}s (attempt {attempt+1}/3)...")
+                time.sleep(wait)
+            else:
+                raise
+
+
+def get_outfits() -> str:
+    prompt = f"""Today is {_today}. San Diego men's style.
+
+Search GQ, Pinterest mens style, and new arrivals at Ralph Lauren, J.Crew, Todd Snyder, Zara Man, or Uniqlo. Find 3 specific clothing items trending right now for the current season. Old money style: think Beckham, Gosling.
+
+Output ONLY this block, nothing else:
+
+👔 OUTFITS TO COP
+<a href="[real product URL]">[Item name]</a>
+<a href="[real product URL]">[Item name]</a>
+<a href="[real product URL]">[Item name]</a>
+
+Real product page links only. No prices. No descriptions. HTML anchor tags only."""
+    return _call_claude(prompt, max_tokens=400)
+
+
+def get_events() -> str:
+    prompt = f"""Today is {_today}. San Diego, CA.
+
+Search for:
+1. 3 upcoming events to meet high-class women in San Diego in the next 14 days — prioritize Tango's San Diego dance nights, upscale salsa/bachata socials, rooftop events, charity galas, La Jolla art openings, Del Mar wine events, beach yoga La Jolla. No low-end bars. Search "Tango's San Diego events", "upscale salsa San Diego", "La Jolla social events".
+2. 2 high-class experiences OR entrepreneur/founder networking events — F1, boxing fight night, charity gala, founder mastermind, YPO event, entrepreneur conference San Diego. Real ticket links.
+
+Output ONLY these two blocks, nothing else:
+
+🏃 EVENTS TO MEET WOMEN
+<a href="[real URL]">[Event name]</a>
+<a href="[real URL]">[Event name]</a>
+<a href="[real URL]">[Event name]</a>
+
+──────────────
+
+🏎️ EXPERIENCES & NETWORK
+<a href="[real URL]">[Event name]</a>
+<a href="[real URL]">[Event name]</a>
+
+HTML anchor tags only. Real links only. No descriptions."""
+    return _call_claude(prompt, max_tokens=400)
+
+
+def get_sunday_extras() -> str:
+    prompt = f"""Today is {_today}.
+
+Search for:
+1. 4 viral men's Instagram/Hinge photo ideas right now — search "men's instagram content ideas that attract women 2025", "husband material social media posts men". Specific shoot concepts showing adventure, ambition, warmth, strength. One line each (e.g. "Golden hour solo hike shot from behind on trail").
+2. 4 thoughtful gifts — one each for: a dad who loves Ferraris, a grandma who loves cooking, a 1-year-old goddaughter, a friend focused on business growth. Search "most thoughtful gifts 2025". Real specific products with purchase links.
+
+Output ONLY these two blocks:
 
 ──────────────
 
@@ -56,96 +137,58 @@ Add these two sections at the very end using this exact format:
 · Grandma: <a href="[product URL]">[Gift name]</a>
 · Goddaughter: <a href="[product URL]">[Gift name]</a>
 · Friend: <a href="[product URL]">[Gift name]</a>"""
-
-SYSTEM_PROMPT = """Men's lifestyle assistant for a man in San Diego. Old money style: Ralph Lauren, J.Crew, Todd Snyder, Zara Man, Uniqlo. Think Beckham, Gosling. Events north of La Jolla only. Output HTML anchor tags only — <a href="URL">Name</a>. No markdown, no asterisks, no prices, no descriptions.
-
-Format:
-
-Stay lonely and a slave forever… or become the man who lives his dream life with his wife.
-
-──────────────
-
-🎯 TODAY'S NON-NEGOTIABLES
-
-Elite Shape — Hit macros. Progressive overload. Cardio.
-Business — Build the asset. Ad, lander, offer, email.
-Women — Go to an event at 5pm.
-
-──────────────
-
-👔 OUTFITS TO COP
-<a href="URL">Item name</a>
-<a href="URL">Item name</a>
-<a href="URL">Item name</a>
-
-──────────────
-
-🏃 EVENTS TO MEET WOMEN
-<a href="URL">Event name</a>
-<a href="URL">Event name</a>
-<a href="URL">Event name</a>
-
-──────────────
-
-🏎️ EXPERIENCES & NETWORK
-<a href="URL">Event name</a>
-<a href="URL">Event name</a>"""
-
-_base_prompt = f"""Today is {_now.strftime('%A, %B %d, %Y')}.
-
-Search for:
-1. 3 specific men's clothing items trending right now — search GQ best dressed, Pinterest mens style, and new arrivals at Ralph Lauren, J.Crew, Todd Snyder, Zara Man, or Uniqlo. Pick what actually looks elite for the current season. Real product page links only.
-2. 3 upcoming events to meet high-class women in San Diego in the next 14 days — prioritize: Tango's San Diego dance nights, upscale salsa/bachata socials, rooftop events, charity galas, La Jolla art openings, Del Mar wine events, beach yoga in La Jolla. Avoid low-end bars or clubs. Search "Tango's San Diego events", "upscale salsa San Diego", "La Jolla social events". Real links only.
-3. 2 high-class experiences OR entrepreneur/founder networking events — F1, Monterey Car Week, boxing fight night, charity gala, ClickFunnels meetup, Shopify meetup, founder mastermind, YPO event, entrepreneur conference. Real ticket or registration links.
-
-Format outfits and events as HTML anchor tags: <a href="URL">Short name</a>. Nothing else."""
-
-USER_PROMPT = _base_prompt + (SUNDAY_SEARCH_PROMPT if _is_sunday else "")
-
-
-def get_brief() -> str:
-    client = anthropic.Anthropic(
-        api_key=os.environ["ANTHROPIC_API_KEY"].strip(),
-        default_headers={"anthropic-beta": "web-search-2025-03-05"},
-    )
-    for attempt in range(3):
-        try:
-            response = client.messages.create(
-                model="claude-sonnet-4-6",
-                max_tokens=1500,
-                system=SYSTEM_PROMPT,
-                tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                messages=[{"role": "user", "content": USER_PROMPT}],
-            )
-            text = ""
-            for block in response.content:
-                if hasattr(block, "text"):
-                    text += block.text
-            return text.strip()
-        except anthropic.RateLimitError:
-            if attempt < 2:
-                print(f"Rate limit hit, waiting 60s (attempt {attempt+1}/3)...")
-                time.sleep(60)
-            else:
-                raise
+    return _call_claude(prompt, max_tokens=500)
 
 
 def send_telegram(message: str) -> None:
-    url  = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    data = urllib.parse.urlencode({
-        "chat_id":    TELEGRAM_CHAT_ID,
-        "text":       message,
-        "parse_mode": "HTML",
-    }).encode()
-    req  = urllib.request.Request(url, data=data)
-    urllib.request.urlopen(req, timeout=30)
-    print("Sent to Telegram successfully.")
+    max_len = 4000
+    chunks = []
+    current = ""
+    for line in message.splitlines(keepends=True):
+        if len(current) + len(line) > max_len:
+            chunks.append(current.strip())
+            current = line
+        else:
+            current += line
+    if current.strip():
+        chunks.append(current.strip())
+
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    for chunk in chunks:
+        data = urllib.parse.urlencode({
+            "chat_id":    TELEGRAM_CHAT_ID,
+            "text":       chunk,
+            "parse_mode": "HTML",
+        }).encode()
+        req = urllib.request.Request(url, data=data)
+        urllib.request.urlopen(req, timeout=30)
+    print(f"Sent {len(chunks)} message(s) to Telegram.")
 
 
 if __name__ == "__main__":
-    print("Generating Life OS brief...")
-    brief = get_brief()
+    print("Generating outfits...")
+    outfits = get_outfits()
+
+    print("Waiting 65s before next API call to avoid rate limit...")
+    time.sleep(65)
+
+    print("Generating events...")
+    events = get_events()
+
+    sunday_extras = ""
     if _is_sunday:
-        brief = SUNDAY_BLOCK_TOP + "\n" + brief
+        print("Waiting 65s before Sunday extras...")
+        time.sleep(65)
+        print("Generating Sunday extras...")
+        sunday_extras = get_sunday_extras()
+
+    # Assemble brief
+    parts = [HEADER, outfits, "\n──────────────\n", events]
+    if _is_sunday:
+        parts.insert(0, SUNDAY_BLOCK_TOP + "\n\n──────────────\n")
+        if sunday_extras:
+            parts.append("\n" + sunday_extras)
+
+    brief = "\n".join(parts)
     print(brief)
     send_telegram(brief)
