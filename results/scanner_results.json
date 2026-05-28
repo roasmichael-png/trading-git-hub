@@ -1,62 +1,7 @@
 {
-  "timestamp": "2026-05-27",
+  "timestamp": "2026-05-28",
   "scanner1": [],
   "scanner2": [
-    {
-      "symbol": "SRPT",
-      "sector": "\ud83e\uddec Healthcare",
-      "close": 16.68,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 8.1 | MACD turning",
-      "entry": 16.68,
-      "stop": 15.51,
-      "target": 19.68,
-      "scanner": 2
-    },
-    {
-      "symbol": "MRNA",
-      "sector": "\ud83e\uddec Healthcare",
-      "close": 47.62,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 23.4 | MACD turning",
-      "entry": 47.62,
-      "stop": 44.29,
-      "target": 56.19,
-      "scanner": 2
-    },
-    {
-      "symbol": "AG",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 19.67,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.7 | MACD turning",
-      "entry": 19.67,
-      "stop": 18.29,
-      "target": 23.21,
-      "scanner": 2
-    },
-    {
-      "symbol": "BA",
-      "sector": "\ud83d\udee1\ufe0f Defense",
-      "close": 224.44,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 25.5 | MACD turning",
-      "entry": 224.44,
-      "stop": 208.73,
-      "target": 264.84,
-      "scanner": 2
-    },
-    {
-      "symbol": "NXE",
-      "sector": "\u26a1 Energy",
-      "close": 11.12,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 29.0 | MACD turning",
-      "entry": 11.12,
-      "stop": 10.34,
-      "target": 13.12,
-      "scanner": 2
-    },
     {
       "symbol": "BITF",
       "sector": "\ud83e\ude99 Crypto",
@@ -69,36 +14,47 @@
       "scanner": 2
     },
     {
+      "symbol": "MRNA",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 47.57,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 26.9 | MACD turning",
+      "entry": 47.57,
+      "stop": 44.24,
+      "target": 56.13,
+      "scanner": 2
+    },
+    {
+      "symbol": "SRPT",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 17.31,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 25.1 | MACD turning",
+      "entry": 17.31,
+      "stop": 16.1,
+      "target": 20.43,
+      "scanner": 2
+    },
+    {
       "symbol": "KKR",
       "sector": "\ud83d\udcb0 Financials",
-      "close": 95.08,
+      "close": 94.01,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 27.5 | MACD turning",
-      "entry": 95.08,
-      "stop": 88.42,
-      "target": 112.19,
+      "note": "Loose reversal | StochRSI 28.5 | MACD turning",
+      "entry": 94.01,
+      "stop": 87.43,
+      "target": 110.93,
       "scanner": 2
     },
     {
-      "symbol": "WPM",
+      "symbol": "AG",
       "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 127.13,
+      "close": 20.59,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.2 | MACD turning",
-      "entry": 127.13,
-      "stop": 118.23,
-      "target": 150.01,
-      "scanner": 2
-    },
-    {
-      "symbol": "GDXJ",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 112.61,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.0 | MACD turning",
-      "entry": 112.61,
-      "stop": 104.73,
-      "target": 132.88,
+      "note": "Loose reversal | StochRSI 29.5 | MACD turning",
+      "entry": 20.59,
+      "stop": 19.15,
+      "target": 24.3,
       "scanner": 2
     }
   ],
