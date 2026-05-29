@@ -1,7 +1,51 @@
 {
-  "timestamp": "2026-05-28",
+  "timestamp": "2026-05-29",
   "scanner1": [],
   "scanner2": [
+    {
+      "symbol": "SLV",
+      "sector": "\ud83e\udd47 Metals & Commodities",
+      "close": 68.36,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 11.2 | MACD turning",
+      "entry": 68.36,
+      "stop": 63.57,
+      "target": 80.66,
+      "scanner": 2
+    },
+    {
+      "symbol": "COIN",
+      "sector": "\ud83e\ude99 Crypto",
+      "close": 189.02,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 21.1 | MACD turning",
+      "entry": 189.02,
+      "stop": 175.79,
+      "target": 223.04,
+      "scanner": 2
+    },
+    {
+      "symbol": "PAAS",
+      "sector": "\ud83e\udd47 Metals & Commodities",
+      "close": 57.02,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 23.9 | MACD turning",
+      "entry": 57.02,
+      "stop": 53.03,
+      "target": 67.28,
+      "scanner": 2
+    },
+    {
+      "symbol": "INTU",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 331.58,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 27.5 | MACD turning",
+      "entry": 331.58,
+      "stop": 308.37,
+      "target": 391.26,
+      "scanner": 2
+    },
     {
       "symbol": "BITF",
       "sector": "\ud83e\ude99 Crypto",
@@ -16,45 +60,34 @@
     {
       "symbol": "MRNA",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 47.57,
+      "close": 47.18,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.9 | MACD turning",
-      "entry": 47.57,
-      "stop": 44.24,
-      "target": 56.13,
+      "note": "Loose reversal | StochRSI 29.3 | MACD turning",
+      "entry": 47.18,
+      "stop": 43.88,
+      "target": 55.67,
       "scanner": 2
     },
     {
-      "symbol": "SRPT",
-      "sector": "\ud83e\uddec Healthcare",
-      "close": 17.31,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 25.1 | MACD turning",
-      "entry": 17.31,
-      "stop": 16.1,
-      "target": 20.43,
-      "scanner": 2
-    },
-    {
-      "symbol": "KKR",
-      "sector": "\ud83d\udcb0 Financials",
-      "close": 94.01,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.5 | MACD turning",
-      "entry": 94.01,
-      "stop": 87.43,
-      "target": 110.93,
-      "scanner": 2
-    },
-    {
-      "symbol": "AG",
+      "symbol": "GLD",
       "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 20.59,
+      "close": 417.18,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 29.5 | MACD turning",
-      "entry": 20.59,
-      "stop": 19.15,
-      "target": 24.3,
+      "note": "Loose reversal | StochRSI 27.6 | MACD turning",
+      "entry": 417.18,
+      "stop": 387.98,
+      "target": 492.27,
+      "scanner": 2
+    },
+    {
+      "symbol": "IAU",
+      "sector": "\ud83e\udd47 Metals & Commodities",
+      "close": 85.51,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 27.6 | MACD turning",
+      "entry": 85.51,
+      "stop": 79.52,
+      "target": 100.9,
       "scanner": 2
     }
   ],
