@@ -1,49 +1,16 @@
 {
-  "timestamp": "2026-05-31",
+  "timestamp": "2026-06-01",
   "scanner1": [],
   "scanner2": [
     {
       "symbol": "SLV",
       "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 68.36,
+      "close": 67.67,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 11.2 | MACD turning",
-      "entry": 68.36,
-      "stop": 63.57,
-      "target": 80.66,
-      "scanner": 2
-    },
-    {
-      "symbol": "COIN",
-      "sector": "\ud83e\ude99 Crypto",
-      "close": 189.02,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.1 | MACD turning",
-      "entry": 189.02,
-      "stop": 175.79,
-      "target": 223.04,
-      "scanner": 2
-    },
-    {
-      "symbol": "PAAS",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 57.02,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 23.9 | MACD turning",
-      "entry": 57.02,
-      "stop": 53.03,
-      "target": 67.28,
-      "scanner": 2
-    },
-    {
-      "symbol": "INTU",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 331.58,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 27.5 | MACD turning",
-      "entry": 331.58,
-      "stop": 308.37,
-      "target": 391.26,
+      "note": "Loose reversal | StochRSI 11.7 | MACD turning",
+      "entry": 67.67,
+      "stop": 62.93,
+      "target": 79.85,
       "scanner": 2
     },
     {
@@ -55,39 +22,6 @@
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
-      "scanner": 2
-    },
-    {
-      "symbol": "MRNA",
-      "sector": "\ud83e\uddec Healthcare",
-      "close": 47.18,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 29.3 | MACD turning",
-      "entry": 47.18,
-      "stop": 43.88,
-      "target": 55.67,
-      "scanner": 2
-    },
-    {
-      "symbol": "GLD",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 417.18,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 27.6 | MACD turning",
-      "entry": 417.18,
-      "stop": 387.98,
-      "target": 492.27,
-      "scanner": 2
-    },
-    {
-      "symbol": "IAU",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 85.51,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 27.6 | MACD turning",
-      "entry": 85.51,
-      "stop": 79.52,
-      "target": 100.9,
       "scanner": 2
     }
   ],
