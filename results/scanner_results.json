@@ -1,16 +1,105 @@
 {
-  "timestamp": "2026-06-01",
-  "scanner1": [],
+  "timestamp": "2026-06-02",
+  "scanner1": [
+    {
+      "symbol": "XOM",
+      "sector": "\u26a1 Energy",
+      "close": 149.66,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 149.66,
+      "stop": 139.18,
+      "target": 176.6,
+      "scanner": 1
+    },
+    {
+      "symbol": "COP",
+      "sector": "\u26a1 Energy",
+      "close": 116.88,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 116.88,
+      "stop": 108.7,
+      "target": 137.92,
+      "scanner": 1
+    },
+    {
+      "symbol": "XLE",
+      "sector": "\ud83d\udcca Other",
+      "close": 57.95,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 57.95,
+      "stop": 53.89,
+      "target": 68.38,
+      "scanner": 1
+    }
+  ],
   "scanner2": [
     {
       "symbol": "SLV",
       "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 67.67,
+      "close": 67.97,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 11.7 | MACD turning",
-      "entry": 67.67,
-      "stop": 62.93,
-      "target": 79.85,
+      "note": "Loose reversal | StochRSI 10.9 | MACD turning",
+      "entry": 67.97,
+      "stop": 63.21,
+      "target": 80.2,
+      "scanner": 2
+    },
+    {
+      "symbol": "XOM",
+      "sector": "\u26a1 Energy",
+      "close": 149.66,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 19.0 | MACD turning",
+      "entry": 149.66,
+      "stop": 139.18,
+      "target": 176.6,
+      "scanner": 2
+    },
+    {
+      "symbol": "COP",
+      "sector": "\u26a1 Energy",
+      "close": 116.88,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 18.4 | MACD turning",
+      "entry": 116.88,
+      "stop": 108.7,
+      "target": 137.92,
+      "scanner": 2
+    },
+    {
+      "symbol": "XLE",
+      "sector": "\ud83d\udcca Other",
+      "close": 57.95,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 18.9 | MACD turning",
+      "entry": 57.95,
+      "stop": 53.89,
+      "target": 68.38,
+      "scanner": 2
+    },
+    {
+      "symbol": "CVX",
+      "sector": "\u26a1 Energy",
+      "close": 187.65,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.1 | MACD turning",
+      "entry": 187.65,
+      "stop": 174.51,
+      "target": 221.43,
+      "scanner": 2
+    },
+    {
+      "symbol": "APA",
+      "sector": "\u26a1 Energy",
+      "close": 37.81,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.2 | MACD turning",
+      "entry": 37.81,
+      "stop": 35.16,
+      "target": 44.62,
       "scanner": 2
     },
     {
