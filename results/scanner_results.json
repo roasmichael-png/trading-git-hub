@@ -1,50 +1,28 @@
 {
-  "timestamp": "2026-06-03",
+  "timestamp": "2026-06-04",
   "scanner1": [
     {
-      "symbol": "REGN",
+      "symbol": "BSX",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 618.76,
-      "rating": "WATCH",
-      "note": "Deeply oversold, MACD turning up",
-      "entry": 618.76,
-      "stop": 575.45,
-      "target": 730.14,
+      "close": 48.86,
+      "rating": "BUY",
+      "note": "Extremely oversold, MACD turning up",
+      "entry": 48.86,
+      "stop": 45.44,
+      "target": 57.65,
       "scanner": 1
     }
   ],
   "scanner2": [
     {
-      "symbol": "REGN",
+      "symbol": "BSX",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 618.76,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 17.0 | MACD turning",
-      "entry": 618.76,
-      "stop": 575.45,
-      "target": 730.14,
-      "scanner": 2
-    },
-    {
-      "symbol": "MLI",
-      "sector": "\u26a1 Energy",
-      "close": 131.44,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 22.3 | MACD turning",
-      "entry": 131.44,
-      "stop": 122.24,
-      "target": 155.1,
-      "scanner": 2
-    },
-    {
-      "symbol": "BKR",
-      "sector": "\u26a1 Energy",
-      "close": 64.31,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.3 | MACD turning",
-      "entry": 64.31,
-      "stop": 59.81,
-      "target": 75.89,
+      "close": 48.86,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 8.0 | MACD turning",
+      "entry": 48.86,
+      "stop": 45.44,
+      "target": 57.65,
       "scanner": 2
     },
     {
