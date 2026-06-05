@@ -1,15 +1,26 @@
 {
-  "timestamp": "2026-06-04",
+  "timestamp": "2026-06-05",
   "scanner1": [
     {
       "symbol": "BSX",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 48.86,
-      "rating": "BUY",
-      "note": "Extremely oversold, MACD turning up",
-      "entry": 48.86,
-      "stop": 45.44,
-      "target": 57.65,
+      "close": 48.56,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 48.56,
+      "stop": 45.16,
+      "target": 57.3,
+      "scanner": 1
+    },
+    {
+      "symbol": "CME",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 257.46,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 257.46,
+      "stop": 239.44,
+      "target": 303.8,
       "scanner": 1
     }
   ],
@@ -17,12 +28,34 @@
     {
       "symbol": "BSX",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 48.86,
+      "close": 48.56,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 8.0 | MACD turning",
-      "entry": 48.86,
-      "stop": 45.44,
-      "target": 57.65,
+      "note": "Loose reversal | StochRSI 14.9 | MACD turning",
+      "entry": 48.56,
+      "stop": 45.16,
+      "target": 57.3,
+      "scanner": 2
+    },
+    {
+      "symbol": "CME",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 257.46,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 13.8 | MACD turning",
+      "entry": 257.46,
+      "stop": 239.44,
+      "target": 303.8,
+      "scanner": 2
+    },
+    {
+      "symbol": "BWXT",
+      "sector": "\u26a1 Energy",
+      "close": 185.72,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 28.0 | MACD turning",
+      "entry": 185.72,
+      "stop": 172.72,
+      "target": 219.15,
       "scanner": 2
     },
     {
@@ -34,6 +67,17 @@
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
+      "scanner": 2
+    },
+    {
+      "symbol": "ICE",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 141.47,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 26.3 | MACD turning",
+      "entry": 141.47,
+      "stop": 131.57,
+      "target": 166.93,
       "scanner": 2
     }
   ],
