@@ -1,39 +1,94 @@
 {
-  "timestamp": "2026-06-08",
+  "timestamp": "2026-06-09",
   "scanner1": [
     {
-      "symbol": "CME",
-      "sector": "\ud83d\udcb0 Financials",
-      "close": 252.0,
+      "symbol": "MSTR",
+      "sector": "\ud83e\ude99 Crypto",
+      "close": 117.07,
       "rating": "WATCH",
       "note": "Deeply oversold, MACD turning up",
-      "entry": 252.0,
-      "stop": 234.36,
-      "target": 297.36,
+      "entry": 117.07,
+      "stop": 108.88,
+      "target": 138.14,
       "scanner": 1
     }
   ],
   "scanner2": [
     {
-      "symbol": "CME",
-      "sector": "\ud83d\udcb0 Financials",
-      "close": 252.0,
+      "symbol": "MSTR",
+      "sector": "\ud83e\ude99 Crypto",
+      "close": 117.07,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 11.9 | MACD turning",
+      "entry": 117.07,
+      "stop": 108.88,
+      "target": 138.14,
+      "scanner": 2
+    },
+    {
+      "symbol": "GOOGL",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 364.05,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 16.6 | MACD turning",
-      "entry": 252.0,
-      "stop": 234.36,
-      "target": 297.36,
+      "note": "Loose reversal | StochRSI 21.1 | MACD turning",
+      "entry": 364.05,
+      "stop": 338.57,
+      "target": 429.58,
+      "scanner": 2
+    },
+    {
+      "symbol": "GOOG",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 362.03,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.9 | MACD turning",
+      "entry": 362.03,
+      "stop": 336.69,
+      "target": 427.2,
+      "scanner": 2
+    },
+    {
+      "symbol": "COIN",
+      "sector": "\ud83e\ude99 Crypto",
+      "close": 155.55,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 21.6 | MACD turning",
+      "entry": 155.55,
+      "stop": 144.66,
+      "target": 183.55,
       "scanner": 2
     },
     {
       "symbol": "BSX",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 48.71,
+      "close": 48.94,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 22.8 | MACD turning",
-      "entry": 48.71,
-      "stop": 45.3,
-      "target": 57.48,
+      "note": "Loose reversal | StochRSI 24.7 | MACD turning",
+      "entry": 48.94,
+      "stop": 45.51,
+      "target": 57.75,
+      "scanner": 2
+    },
+    {
+      "symbol": "CME",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 255.97,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.7 | MACD turning",
+      "entry": 255.97,
+      "stop": 238.05,
+      "target": 302.04,
+      "scanner": 2
+    },
+    {
+      "symbol": "BA",
+      "sector": "\ud83d\udee1\ufe0f Defense",
+      "close": 214.56,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 28.3 | MACD turning",
+      "entry": 214.56,
+      "stop": 199.54,
+      "target": 253.18,
       "scanner": 2
     },
     {
@@ -45,6 +100,17 @@
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
+      "scanner": 2
+    },
+    {
+      "symbol": "BLK",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 1011.93,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 27.1 | MACD turning",
+      "entry": 1011.93,
+      "stop": 941.09,
+      "target": 1194.08,
       "scanner": 2
     }
   ],
