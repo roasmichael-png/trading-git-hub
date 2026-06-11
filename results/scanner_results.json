@@ -1,27 +1,39 @@
 {
-  "timestamp": "2026-06-10",
-  "scanner1": [],
-  "scanner2": [
+  "timestamp": "2026-06-11",
+  "scanner1": [
     {
       "symbol": "MSTR",
       "sector": "\ud83e\ude99 Crypto",
-      "close": 115.34,
+      "close": 120.22,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 120.22,
+      "stop": 111.8,
+      "target": 141.86,
+      "scanner": 1
+    }
+  ],
+  "scanner2": [
+    {
+      "symbol": "ZS",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 126.1,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 13.4 | MACD turning",
-      "entry": 115.34,
-      "stop": 107.27,
-      "target": 136.1,
+      "note": "Loose reversal | StochRSI 7.6 | MACD turning",
+      "entry": 126.1,
+      "stop": 117.27,
+      "target": 148.8,
       "scanner": 2
     },
     {
-      "symbol": "COIN",
+      "symbol": "MSTR",
       "sector": "\ud83e\ude99 Crypto",
-      "close": 153.99,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.4 | MACD turning",
-      "entry": 153.99,
-      "stop": 143.21,
-      "target": 181.71,
+      "close": 120.22,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 13.7 | MACD turning",
+      "entry": 120.22,
+      "stop": 111.8,
+      "target": 141.86,
       "scanner": 2
     },
     {
