@@ -1,83 +1,50 @@
 {
-  "timestamp": "2026-08-03",
+  "timestamp": "2026-08-04",
   "scanner1": [
     {
-      "symbol": "HOOD",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 91.7,
+      "symbol": "SPGI",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 416.1,
       "rating": "BUY",
       "note": "Extremely oversold, MACD turning up",
-      "entry": 91.7,
-      "stop": 85.28,
-      "target": 108.21,
+      "entry": 416.1,
+      "stop": 386.97,
+      "target": 491.0,
       "scanner": 1
     }
   ],
   "scanner2": [
     {
+      "symbol": "SPGI",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 416.1,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 7.5 | MACD turning",
+      "entry": 416.1,
+      "stop": 386.97,
+      "target": 491.0,
+      "scanner": 2
+    },
+    {
       "symbol": "HOOD",
       "sector": "\ud83d\udcbb Tech",
-      "close": 91.68,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 8.2 | MACD turning",
-      "entry": 91.68,
-      "stop": 85.26,
-      "target": 108.18,
-      "scanner": 2
-    },
-    {
-      "symbol": "PLTR",
-      "sector": "\ud83e\udd16 AI",
-      "close": 125.53,
+      "close": 92.31,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.6 | MACD turning",
-      "entry": 125.53,
-      "stop": 116.74,
-      "target": 148.13,
+      "note": "Loose reversal | StochRSI 21.3 | MACD turning",
+      "entry": 92.31,
+      "stop": 85.85,
+      "target": 108.93,
       "scanner": 2
     },
     {
-      "symbol": "TENB",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 34.78,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 23.9 | MACD turning",
-      "entry": 34.78,
-      "stop": 32.35,
-      "target": 41.04,
-      "scanner": 2
-    },
-    {
-      "symbol": "GS",
-      "sector": "\ud83d\udcb0 Financials",
-      "close": 1018.67,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 23.8 | MACD turning",
-      "entry": 1018.67,
-      "stop": 947.36,
-      "target": 1202.03,
-      "scanner": 2
-    },
-    {
-      "symbol": "ARKW",
+      "symbol": "XBI",
       "sector": "\ud83d\udcca Other",
-      "close": 140.46,
+      "close": 150.71,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 20.1 | MACD turning",
-      "entry": 140.46,
-      "stop": 130.63,
-      "target": 165.74,
-      "scanner": 2
-    },
-    {
-      "symbol": "RUN",
-      "sector": "\u26a1 Energy",
-      "close": 10.35,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 29.7 | MACD turning",
-      "entry": 10.35,
-      "stop": 9.63,
-      "target": 12.21,
+      "note": "Loose reversal | StochRSI 20.2 | MACD turning",
+      "entry": 150.71,
+      "stop": 140.16,
+      "target": 177.84,
       "scanner": 2
     },
     {
