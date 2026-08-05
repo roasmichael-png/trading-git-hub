@@ -1,50 +1,16 @@
 {
-  "timestamp": "2026-08-04",
-  "scanner1": [
-    {
-      "symbol": "SPGI",
-      "sector": "\ud83d\udcb0 Financials",
-      "close": 416.1,
-      "rating": "BUY",
-      "note": "Extremely oversold, MACD turning up",
-      "entry": 416.1,
-      "stop": 386.97,
-      "target": 491.0,
-      "scanner": 1
-    }
-  ],
+  "timestamp": "2026-08-05",
+  "scanner1": [],
   "scanner2": [
     {
-      "symbol": "SPGI",
-      "sector": "\ud83d\udcb0 Financials",
-      "close": 416.1,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 7.5 | MACD turning",
-      "entry": 416.1,
-      "stop": 386.97,
-      "target": 491.0,
-      "scanner": 2
-    },
-    {
-      "symbol": "HOOD",
+      "symbol": "NXPI",
       "sector": "\ud83d\udcbb Tech",
-      "close": 92.31,
+      "close": 230.79,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.3 | MACD turning",
-      "entry": 92.31,
-      "stop": 85.85,
-      "target": 108.93,
-      "scanner": 2
-    },
-    {
-      "symbol": "XBI",
-      "sector": "\ud83d\udcca Other",
-      "close": 150.71,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 20.2 | MACD turning",
-      "entry": 150.71,
-      "stop": 140.16,
-      "target": 177.84,
+      "note": "Loose reversal | StochRSI 25.8 | MACD turning",
+      "entry": 230.79,
+      "stop": 214.63,
+      "target": 272.33,
       "scanner": 2
     },
     {
