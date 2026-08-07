@@ -1,18 +1,7 @@
 {
-  "timestamp": "2026-08-05",
+  "timestamp": "2026-08-07",
   "scanner1": [],
   "scanner2": [
-    {
-      "symbol": "NXPI",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 230.79,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 25.8 | MACD turning",
-      "entry": 230.79,
-      "stop": 214.63,
-      "target": 272.33,
-      "scanner": 2
-    },
     {
       "symbol": "BITF",
       "sector": "\ud83e\ude99 Crypto",
