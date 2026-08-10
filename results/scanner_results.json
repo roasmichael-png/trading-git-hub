@@ -1,7 +1,85 @@
 {
-  "timestamp": "2026-08-09",
-  "scanner1": [],
+  "timestamp": "2026-08-10",
+  "scanner1": [
+    {
+      "symbol": "UNH",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 410.06,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 410.06,
+      "stop": 381.36,
+      "target": 483.87,
+      "scanner": 1
+    },
+    {
+      "symbol": "SPGI",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 411.26,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 411.26,
+      "stop": 382.47,
+      "target": 485.29,
+      "scanner": 1
+    },
+    {
+      "symbol": "VST",
+      "sector": "\u26a1 Energy",
+      "close": 143.77,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 143.77,
+      "stop": 133.71,
+      "target": 169.65,
+      "scanner": 1
+    }
+  ],
   "scanner2": [
+    {
+      "symbol": "UNH",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 409.99,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 12.4 | MACD turning",
+      "entry": 409.99,
+      "stop": 381.29,
+      "target": 483.79,
+      "scanner": 2
+    },
+    {
+      "symbol": "SPGI",
+      "sector": "\ud83d\udcb0 Financials",
+      "close": 411.26,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 14.3 | MACD turning",
+      "entry": 411.26,
+      "stop": 382.47,
+      "target": 485.29,
+      "scanner": 2
+    },
+    {
+      "symbol": "VST",
+      "sector": "\u26a1 Energy",
+      "close": 143.76,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 15.1 | MACD turning",
+      "entry": 143.76,
+      "stop": 133.7,
+      "target": 169.64,
+      "scanner": 2
+    },
+    {
+      "symbol": "COIN",
+      "sector": "\ud83e\ude99 Crypto",
+      "close": 149.5,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 22.8 | MACD turning",
+      "entry": 149.5,
+      "stop": 139.04,
+      "target": 176.41,
+      "scanner": 2
+    },
     {
       "symbol": "BITF",
       "sector": "\ud83e\ude99 Crypto",
