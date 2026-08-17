@@ -1,72 +1,61 @@
 {
-  "timestamp": "2026-08-16",
+  "timestamp": "2026-08-17",
   "scanner1": [
     {
       "symbol": "AAPL",
       "sector": "\ud83d\udcbb Tech",
-      "close": 305.94,
-      "rating": "BUY",
-      "note": "Extremely oversold, MACD turning up",
-      "entry": 305.94,
-      "stop": 284.52,
-      "target": 361.01,
-      "scanner": 1
-    },
-    {
-      "symbol": "APP",
-      "sector": "\ud83e\udd16 AI",
-      "close": 315.52,
+      "close": 304.49,
       "rating": "WATCH",
       "note": "Deeply oversold, MACD turning up",
-      "entry": 315.52,
-      "stop": 293.43,
-      "target": 372.31,
+      "entry": 304.49,
+      "stop": 283.18,
+      "target": 359.3,
       "scanner": 1
     }
   ],
   "scanner2": [
     {
-      "symbol": "APP",
-      "sector": "\ud83e\udd16 AI",
-      "close": 315.52,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 12.9 | MACD turning",
-      "entry": 315.52,
-      "stop": 293.43,
-      "target": 372.31,
-      "scanner": 2
-    },
-    {
       "symbol": "AAPL",
       "sector": "\ud83d\udcbb Tech",
-      "close": 305.94,
+      "close": 304.2,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 7.4 | MACD turning",
-      "entry": 305.94,
-      "stop": 284.52,
-      "target": 361.01,
+      "note": "Loose reversal | StochRSI 10.1 | MACD turning",
+      "entry": 304.2,
+      "stop": 282.91,
+      "target": 358.96,
       "scanner": 2
     },
     {
       "symbol": "SEDG",
       "sector": "\u26a1 Energy",
-      "close": 32.4,
+      "close": 31.42,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 14.4 | MACD turning",
-      "entry": 32.4,
-      "stop": 30.13,
-      "target": 38.23,
+      "note": "Loose reversal | StochRSI 13.6 | MACD turning",
+      "entry": 31.42,
+      "stop": 29.22,
+      "target": 37.08,
+      "scanner": 2
+    },
+    {
+      "symbol": "APP",
+      "sector": "\ud83e\udd16 AI",
+      "close": 318.35,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 22.3 | MACD turning",
+      "entry": 318.35,
+      "stop": 296.07,
+      "target": 375.65,
       "scanner": 2
     },
     {
       "symbol": "CIFR",
       "sector": "\ud83e\ude99 Crypto",
-      "close": 17.86,
+      "close": 18.37,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 24.5 | MACD turning",
-      "entry": 17.86,
-      "stop": 16.61,
-      "target": 21.07,
+      "note": "Loose reversal | StochRSI 29.7 | MACD turning",
+      "entry": 18.37,
+      "stop": 17.08,
+      "target": 21.68,
       "scanner": 2
     },
     {
