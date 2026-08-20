@@ -1,27 +1,38 @@
 {
-  "timestamp": "2026-08-19",
+  "timestamp": "2026-08-20",
   "scanner1": [],
   "scanner2": [
     {
-      "symbol": "SEDG",
-      "sector": "\u26a1 Energy",
-      "close": 31.27,
+      "symbol": "HUT",
+      "sector": "\ud83e\ude99 Crypto",
+      "close": 85.23,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 8.3 | MACD turning",
-      "entry": 31.27,
-      "stop": 29.08,
-      "target": 36.9,
+      "note": "Loose reversal | StochRSI 11.6 | MACD turning",
+      "entry": 85.23,
+      "stop": 79.26,
+      "target": 100.57,
       "scanner": 2
     },
     {
       "symbol": "APP",
       "sector": "\ud83e\udd16 AI",
-      "close": 307.96,
+      "close": 312.93,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 16.9 | MACD turning",
-      "entry": 307.96,
-      "stop": 286.4,
-      "target": 363.39,
+      "note": "Loose reversal | StochRSI 21.9 | MACD turning",
+      "entry": 312.93,
+      "stop": 291.02,
+      "target": 369.26,
+      "scanner": 2
+    },
+    {
+      "symbol": "IDXX",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 556.34,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.6 | MACD turning",
+      "entry": 556.34,
+      "stop": 517.4,
+      "target": 656.48,
       "scanner": 2
     },
     {
