@@ -1,38 +1,16 @@
 {
-  "timestamp": "2026-08-20",
+  "timestamp": "2026-08-21",
   "scanner1": [],
   "scanner2": [
     {
-      "symbol": "HUT",
-      "sector": "\ud83e\ude99 Crypto",
-      "close": 85.23,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 11.6 | MACD turning",
-      "entry": 85.23,
-      "stop": 79.26,
-      "target": 100.57,
-      "scanner": 2
-    },
-    {
       "symbol": "APP",
       "sector": "\ud83e\udd16 AI",
-      "close": 312.93,
+      "close": 301.11,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.9 | MACD turning",
-      "entry": 312.93,
-      "stop": 291.02,
-      "target": 369.26,
-      "scanner": 2
-    },
-    {
-      "symbol": "IDXX",
-      "sector": "\ud83e\uddec Healthcare",
-      "close": 556.34,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 24.6 | MACD turning",
-      "entry": 556.34,
-      "stop": 517.4,
-      "target": 656.48,
+      "note": "Loose reversal | StochRSI 18.7 | MACD turning",
+      "entry": 301.11,
+      "stop": 280.03,
+      "target": 355.31,
       "scanner": 2
     },
     {
