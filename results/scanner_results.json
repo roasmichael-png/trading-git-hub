@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-08-21",
+  "timestamp": "2026-08-22",
   "scanner1": [],
   "scanner2": [
     {
       "symbol": "APP",
       "sector": "\ud83e\udd16 AI",
-      "close": 301.11,
+      "close": 305.99,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 18.7 | MACD turning",
-      "entry": 301.11,
-      "stop": 280.03,
-      "target": 355.31,
+      "note": "Loose reversal | StochRSI 20.4 | MACD turning",
+      "entry": 305.99,
+      "stop": 284.57,
+      "target": 361.07,
       "scanner": 2
     },
     {
