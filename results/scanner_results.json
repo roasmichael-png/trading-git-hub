@@ -1,16 +1,94 @@
 {
-  "timestamp": "2026-08-23",
-  "scanner1": [],
+  "timestamp": "2026-08-24",
+  "scanner1": [
+    {
+      "symbol": "IR",
+      "sector": "\u26a1 Energy",
+      "close": 80.69,
+      "rating": "BUY",
+      "note": "Extremely oversold, MACD turning up",
+      "entry": 80.69,
+      "stop": 75.04,
+      "target": 95.21,
+      "scanner": 1
+    },
+    {
+      "symbol": "META",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 552.2,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 552.2,
+      "stop": 513.55,
+      "target": 651.6,
+      "scanner": 1
+    }
+  ],
   "scanner2": [
     {
-      "symbol": "APP",
-      "sector": "\ud83e\udd16 AI",
-      "close": 305.99,
+      "symbol": "IR",
+      "sector": "\u26a1 Energy",
+      "close": 80.69,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 9.6 | MACD turning",
+      "entry": 80.69,
+      "stop": 75.04,
+      "target": 95.21,
+      "scanner": 2
+    },
+    {
+      "symbol": "META",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 552.2,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 20.4 | MACD turning",
-      "entry": 305.99,
-      "stop": 284.57,
-      "target": 361.07,
+      "note": "Loose reversal | StochRSI 16.3 | MACD turning",
+      "entry": 552.2,
+      "stop": 513.55,
+      "target": 651.6,
+      "scanner": 2
+    },
+    {
+      "symbol": "IDXX",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 554.54,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 19.3 | MACD turning",
+      "entry": 554.54,
+      "stop": 515.72,
+      "target": 654.36,
+      "scanner": 2
+    },
+    {
+      "symbol": "GOOG",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 346.32,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.3 | MACD turning",
+      "entry": 346.32,
+      "stop": 322.08,
+      "target": 408.66,
+      "scanner": 2
+    },
+    {
+      "symbol": "ROK",
+      "sector": "\u26a1 Energy",
+      "close": 431.21,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 23.9 | MACD turning",
+      "entry": 431.21,
+      "stop": 401.03,
+      "target": 508.83,
+      "scanner": 2
+    },
+    {
+      "symbol": "GOOGL",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 349.73,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 26.7 | MACD turning",
+      "entry": 349.73,
+      "stop": 325.25,
+      "target": 412.68,
       "scanner": 2
     },
     {
