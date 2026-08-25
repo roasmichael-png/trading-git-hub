@@ -1,26 +1,15 @@
 {
-  "timestamp": "2026-08-24",
+  "timestamp": "2026-08-25",
   "scanner1": [
     {
-      "symbol": "IR",
-      "sector": "\u26a1 Energy",
-      "close": 80.69,
-      "rating": "BUY",
-      "note": "Extremely oversold, MACD turning up",
-      "entry": 80.69,
-      "stop": 75.04,
-      "target": 95.21,
-      "scanner": 1
-    },
-    {
-      "symbol": "META",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 552.2,
+      "symbol": "JETS",
+      "sector": "\ud83d\udcca Other",
+      "close": 29.75,
       "rating": "WATCH",
       "note": "Deeply oversold, MACD turning up",
-      "entry": 552.2,
-      "stop": 513.55,
-      "target": 651.6,
+      "entry": 29.75,
+      "stop": 27.67,
+      "target": 35.1,
       "scanner": 1
     }
   ],
@@ -28,67 +17,23 @@
     {
       "symbol": "IR",
       "sector": "\u26a1 Energy",
-      "close": 80.69,
+      "close": 79.25,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 9.6 | MACD turning",
-      "entry": 80.69,
-      "stop": 75.04,
-      "target": 95.21,
+      "note": "Loose reversal | StochRSI 8.5 | MACD turning",
+      "entry": 79.25,
+      "stop": 73.7,
+      "target": 93.52,
       "scanner": 2
     },
     {
-      "symbol": "META",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 552.2,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 16.3 | MACD turning",
-      "entry": 552.2,
-      "stop": 513.55,
-      "target": 651.6,
-      "scanner": 2
-    },
-    {
-      "symbol": "IDXX",
-      "sector": "\ud83e\uddec Healthcare",
-      "close": 554.54,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 19.3 | MACD turning",
-      "entry": 554.54,
-      "stop": 515.72,
-      "target": 654.36,
-      "scanner": 2
-    },
-    {
-      "symbol": "GOOG",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 346.32,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 24.3 | MACD turning",
-      "entry": 346.32,
-      "stop": 322.08,
-      "target": 408.66,
-      "scanner": 2
-    },
-    {
-      "symbol": "ROK",
-      "sector": "\u26a1 Energy",
-      "close": 431.21,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 23.9 | MACD turning",
-      "entry": 431.21,
-      "stop": 401.03,
-      "target": 508.83,
-      "scanner": 2
-    },
-    {
-      "symbol": "GOOGL",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 349.73,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.7 | MACD turning",
-      "entry": 349.73,
-      "stop": 325.25,
-      "target": 412.68,
+      "symbol": "JETS",
+      "sector": "\ud83d\udcca Other",
+      "close": 29.74,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 14.9 | MACD turning",
+      "entry": 29.74,
+      "stop": 27.66,
+      "target": 35.09,
       "scanner": 2
     },
     {
@@ -100,6 +45,17 @@
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
+      "scanner": 2
+    },
+    {
+      "symbol": "IDXX",
+      "sector": "\ud83e\uddec Healthcare",
+      "close": 552.52,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 27.6 | MACD turning",
+      "entry": 552.52,
+      "stop": 513.84,
+      "target": 651.97,
       "scanner": 2
     }
   ],
