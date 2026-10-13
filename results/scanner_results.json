@@ -1,72 +1,38 @@
 {
-  "timestamp": "2026-10-12",
-  "scanner1": [
-    {
-      "symbol": "HOOD",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 109.25,
-      "rating": "WATCH",
-      "note": "Deeply oversold, MACD turning up",
-      "entry": 109.25,
-      "stop": 101.6,
-      "target": 128.92,
-      "scanner": 1
-    },
-    {
-      "symbol": "HUT",
-      "sector": "\ud83e\ude99 Crypto",
-      "close": 85.22,
-      "rating": "WATCH",
-      "note": "Deeply oversold, MACD turning up",
-      "entry": 85.22,
-      "stop": 79.25,
-      "target": 100.56,
-      "scanner": 1
-    }
-  ],
+  "timestamp": "2026-10-13",
+  "scanner1": [],
   "scanner2": [
     {
       "symbol": "HOOD",
       "sector": "\ud83d\udcbb Tech",
-      "close": 109.25,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 10.9 | MACD turning",
-      "entry": 109.25,
-      "stop": 101.6,
-      "target": 128.92,
+      "close": 110.48,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 21.6 | MACD turning",
+      "entry": 110.48,
+      "stop": 102.75,
+      "target": 130.37,
+      "scanner": 2
+    },
+    {
+      "symbol": "CDE",
+      "sector": "\ud83e\udd47 Metals & Commodities",
+      "close": 16.26,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 22.4 | MACD turning",
+      "entry": 16.26,
+      "stop": 15.12,
+      "target": 19.19,
       "scanner": 2
     },
     {
       "symbol": "HUT",
       "sector": "\ud83e\ude99 Crypto",
-      "close": 85.22,
+      "close": 83.62,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 18.1 | MACD turning",
-      "entry": 85.22,
-      "stop": 79.25,
-      "target": 100.56,
-      "scanner": 2
-    },
-    {
-      "symbol": "KGC",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 23.54,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.1 | MACD turning",
-      "entry": 23.54,
-      "stop": 21.89,
-      "target": 27.78,
-      "scanner": 2
-    },
-    {
-      "symbol": "SLV",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 54.36,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 24.4 | MACD turning",
-      "entry": 54.36,
-      "stop": 50.55,
-      "target": 64.14,
+      "note": "Loose reversal | StochRSI 26.7 | MACD turning",
+      "entry": 83.62,
+      "stop": 77.77,
+      "target": 98.67,
       "scanner": 2
     },
     {
@@ -78,28 +44,6 @@
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
-      "scanner": 2
-    },
-    {
-      "symbol": "AG",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 16.99,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 27.3 | MACD turning",
-      "entry": 16.99,
-      "stop": 15.8,
-      "target": 20.05,
-      "scanner": 2
-    },
-    {
-      "symbol": "CDE",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 16.76,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 25.3 | MACD turning",
-      "entry": 16.76,
-      "stop": 15.59,
-      "target": 19.78,
       "scanner": 2
     }
   ],
