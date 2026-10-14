@@ -1,46 +1,13 @@
 {
-  "timestamp": "2026-10-13",
+  "timestamp": "2026-10-14",
   "scanner1": [],
   "scanner2": [
-    {
-      "symbol": "HOOD",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 110.48,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.6 | MACD turning",
-      "entry": 110.48,
-      "stop": 102.75,
-      "target": 130.37,
-      "scanner": 2
-    },
-    {
-      "symbol": "CDE",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 16.26,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 22.4 | MACD turning",
-      "entry": 16.26,
-      "stop": 15.12,
-      "target": 19.19,
-      "scanner": 2
-    },
-    {
-      "symbol": "HUT",
-      "sector": "\ud83e\ude99 Crypto",
-      "close": 83.62,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.7 | MACD turning",
-      "entry": 83.62,
-      "stop": 77.77,
-      "target": 98.67,
-      "scanner": 2
-    },
     {
       "symbol": "BITF",
       "sector": "\ud83e\ude99 Crypto",
       "close": 1.97,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.8 | MACD turning",
+      "note": "Loose reversal | StochRSI 28.7 | MACD turning",
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
