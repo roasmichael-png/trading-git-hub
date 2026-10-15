@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-14",
+  "timestamp": "2026-10-15",
   "scanner1": [],
   "scanner2": [
     {
@@ -7,7 +7,7 @@
       "sector": "\ud83e\ude99 Crypto",
       "close": 1.97,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.7 | MACD turning",
+      "note": "Loose reversal | StochRSI 28.8 | MACD turning",
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
