@@ -1,16 +1,82 @@
 {
-  "timestamp": "2026-10-15",
+  "timestamp": "2026-10-16",
   "scanner1": [],
   "scanner2": [
+    {
+      "symbol": "RGTI",
+      "sector": "\ud83e\udd16 AI",
+      "close": 12.02,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.0 | MACD turning",
+      "entry": 12.02,
+      "stop": 11.18,
+      "target": 14.18,
+      "scanner": 2
+    },
+    {
+      "symbol": "QUBT",
+      "sector": "\ud83e\udd16 AI",
+      "close": 6.44,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 24.5 | MACD turning",
+      "entry": 6.44,
+      "stop": 5.99,
+      "target": 7.6,
+      "scanner": 2
+    },
+    {
+      "symbol": "MCHP",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 74.35,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 21.8 | MACD turning",
+      "entry": 74.35,
+      "stop": 69.15,
+      "target": 87.73,
+      "scanner": 2
+    },
+    {
+      "symbol": "QCOM",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 173.88,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 25.2 | MACD turning",
+      "entry": 173.88,
+      "stop": 161.71,
+      "target": 205.18,
+      "scanner": 2
+    },
+    {
+      "symbol": "SEDG",
+      "sector": "\u26a1 Energy",
+      "close": 31.6,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 29.7 | MACD turning",
+      "entry": 31.6,
+      "stop": 29.39,
+      "target": 37.29,
+      "scanner": 2
+    },
     {
       "symbol": "BITF",
       "sector": "\ud83e\ude99 Crypto",
       "close": 1.97,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.8 | MACD turning",
+      "note": "Loose reversal | StochRSI 28.9 | MACD turning",
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
+      "scanner": 2
+    },
+    {
+      "symbol": "CDE",
+      "sector": "\ud83e\udd47 Metals & Commodities",
+      "close": 15.44,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 25.6 | MACD turning",
+      "entry": 15.44,
+      "stop": 14.36,
+      "target": 18.22,
       "scanner": 2
     }
   ],
