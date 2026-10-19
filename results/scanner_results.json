@@ -1,16 +1,28 @@
 {
-  "timestamp": "2026-10-18",
-  "scanner1": [],
+  "timestamp": "2026-10-19",
+  "scanner1": [
+    {
+      "symbol": "UUUU",
+      "sector": "\u26a1 Energy",
+      "close": 8.24,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 8.24,
+      "stop": 7.66,
+      "target": 9.72,
+      "scanner": 1
+    }
+  ],
   "scanner2": [
     {
-      "symbol": "MCHP",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 73.84,
+      "symbol": "UUUU",
+      "sector": "\u26a1 Energy",
+      "close": 8.24,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 20.4 | MACD turning",
-      "entry": 73.84,
-      "stop": 68.67,
-      "target": 87.13,
+      "note": "Loose reversal | StochRSI 16.0 | MACD turning",
+      "entry": 8.24,
+      "stop": 7.66,
+      "target": 9.72,
       "scanner": 2
     },
     {
@@ -22,17 +34,6 @@
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
-      "scanner": 2
-    },
-    {
-      "symbol": "CDE",
-      "sector": "\ud83e\udd47 Metals & Commodities",
-      "close": 15.46,
-      "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.1 | MACD turning",
-      "entry": 15.46,
-      "stop": 14.38,
-      "target": 18.24,
       "scanner": 2
     }
   ],
