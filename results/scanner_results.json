@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-10-30",
+  "timestamp": "2026-10-31",
   "scanner1": [
     {
       "symbol": "META",
       "sector": "\ud83d\udcbb Tech",
-      "close": 612.29,
+      "close": 614.86,
       "rating": "BUY",
       "note": "Extremely oversold, MACD turning up",
-      "entry": 612.29,
-      "stop": 569.43,
-      "target": 722.5,
+      "entry": 614.86,
+      "stop": 571.82,
+      "target": 725.53,
       "scanner": 1
     }
   ],
@@ -17,34 +17,34 @@
     {
       "symbol": "META",
       "sector": "\ud83d\udcbb Tech",
-      "close": 611.99,
+      "close": 614.86,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 5.8 | MACD turning",
-      "entry": 611.99,
-      "stop": 569.15,
-      "target": 722.15,
+      "note": "Loose reversal | StochRSI 6.3 | MACD turning",
+      "entry": 614.86,
+      "stop": 571.82,
+      "target": 725.53,
       "scanner": 2
     },
     {
       "symbol": "SE",
       "sector": "\ud83d\udcbb Tech",
-      "close": 74.13,
+      "close": 74.28,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.0 | MACD turning",
-      "entry": 74.13,
-      "stop": 68.94,
-      "target": 87.47,
+      "note": "Loose reversal | StochRSI 21.2 | MACD turning",
+      "entry": 74.28,
+      "stop": 69.08,
+      "target": 87.65,
       "scanner": 2
     },
     {
       "symbol": "CEG",
       "sector": "\u26a1 Energy",
-      "close": 259.95,
+      "close": 262.4,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 26.5 | MACD turning",
-      "entry": 259.95,
-      "stop": 241.75,
-      "target": 306.74,
+      "note": "Loose reversal | StochRSI 28.6 | MACD turning",
+      "entry": 262.4,
+      "stop": 244.03,
+      "target": 309.63,
       "scanner": 2
     },
     {
