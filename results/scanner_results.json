@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-11-02",
+  "timestamp": "2026-11-03",
   "scanner1": [
     {
       "symbol": "META",
       "sector": "\ud83d\udcbb Tech",
-      "close": 606.65,
-      "rating": "BUY",
-      "note": "Extremely oversold, MACD turning up",
-      "entry": 606.65,
-      "stop": 564.18,
-      "target": 715.85,
+      "close": 619.6,
+      "rating": "WATCH",
+      "note": "Deeply oversold, MACD turning up",
+      "entry": 619.6,
+      "stop": 576.23,
+      "target": 731.13,
       "scanner": 1
     }
   ],
@@ -17,23 +17,45 @@
     {
       "symbol": "META",
       "sector": "\ud83d\udcbb Tech",
-      "close": 606.65,
+      "close": 619.48,
       "rating": "BUY",
-      "note": "Loose reversal | StochRSI 7.5 | MACD turning",
-      "entry": 606.65,
-      "stop": 564.18,
-      "target": 715.85,
+      "note": "Loose reversal | StochRSI 10.5 | MACD turning",
+      "entry": 619.48,
+      "stop": 576.12,
+      "target": 730.99,
       "scanner": 2
     },
     {
-      "symbol": "SE",
+      "symbol": "NU",
       "sector": "\ud83d\udcbb Tech",
-      "close": 75.49,
+      "close": 11.62,
+      "rating": "BUY",
+      "note": "Loose reversal | StochRSI 0.4 | MACD turning",
+      "entry": 11.62,
+      "stop": 10.81,
+      "target": 13.71,
+      "scanner": 2
+    },
+    {
+      "symbol": "MELI",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 1672.24,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 28.5 | MACD turning",
-      "entry": 75.49,
-      "stop": 70.21,
-      "target": 89.08,
+      "note": "Loose reversal | StochRSI 21.0 | MACD turning",
+      "entry": 1672.24,
+      "stop": 1555.18,
+      "target": 1973.24,
+      "scanner": 2
+    },
+    {
+      "symbol": "AMZN",
+      "sector": "\ud83d\udcbb Tech",
+      "close": 252.18,
+      "rating": "WATCH",
+      "note": "Loose reversal | StochRSI 29.9 | MACD turning",
+      "entry": 252.18,
+      "stop": 234.53,
+      "target": 297.57,
       "scanner": 2
     },
     {
@@ -41,7 +63,7 @@
       "sector": "\ud83e\ude99 Crypto",
       "close": 1.97,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 29.1 | MACD turning",
+      "note": "Loose reversal | StochRSI 29.0 | MACD turning",
       "entry": 1.97,
       "stop": 1.83,
       "target": 2.32,
