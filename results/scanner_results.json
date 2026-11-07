@@ -1,50 +1,39 @@
 {
-  "timestamp": "2026-11-06",
+  "timestamp": "2026-11-07",
   "scanner1": [
     {
       "symbol": "ALNY",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 155.72,
+      "close": 155.94,
       "rating": "BUY",
       "note": "Extremely oversold, MACD turning up",
-      "entry": 155.72,
-      "stop": 144.82,
-      "target": 183.75,
+      "entry": 155.94,
+      "stop": 145.02,
+      "target": 184.01,
       "scanner": 1
     }
   ],
   "scanner2": [
     {
-      "symbol": "FTNT",
-      "sector": "\ud83d\udcbb Tech",
-      "close": 120.31,
-      "rating": "BUY",
-      "note": "Loose reversal | StochRSI 3.6 | MACD turning",
-      "entry": 120.31,
-      "stop": 111.89,
-      "target": 141.97,
-      "scanner": 2
-    },
-    {
       "symbol": "ALNY",
       "sector": "\ud83e\uddec Healthcare",
-      "close": 155.72,
+      "close": 155.94,
       "rating": "BUY",
       "note": "Loose reversal | StochRSI 5.4 | MACD turning",
-      "entry": 155.72,
-      "stop": 144.82,
-      "target": 183.75,
+      "entry": 155.94,
+      "stop": 145.02,
+      "target": 184.01,
       "scanner": 2
     },
     {
       "symbol": "NU",
       "sector": "\ud83d\udcbb Tech",
-      "close": 12.1,
+      "close": 12.03,
       "rating": "WATCH",
-      "note": "Loose reversal | StochRSI 21.4 | MACD turning",
-      "entry": 12.1,
-      "stop": 11.25,
-      "target": 14.28,
+      "note": "Loose reversal | StochRSI 20.3 | MACD turning",
+      "entry": 12.03,
+      "stop": 11.19,
+      "target": 14.2,
       "scanner": 2
     },
     {
